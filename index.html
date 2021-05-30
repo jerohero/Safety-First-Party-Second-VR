@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>nya >_></title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
@@ -12,11 +13,17 @@
         <a-assets>
         </a-assets> 
 
-        <a-entity template="src: festival.template"></a-entity>
+        <!-- <a-entity template="src: festival.template"></a-entity> -->
 
-        <a-entity camera look-controls wasd-controls="acceleration:80" position="0 1.6 0">
-            <a-entity light="type: point"></a-entity>
-        </a-entity>
+        <a-plane color="green" width="400" height="400" rotation="-90 0 0"></a-plane>
+
+        <a-box id="collisionTest" position="2 0 -2"></a-box>
+
+        <a-cylinder id="playerBody" movement-controls="speed: 1" position="0 1 0" height="2" radius=".15" color="crimson">
+            <!-- <a-entity light="type: point"></a-entity> -->
+            <a-entity camera position="0 1.8 0" look-controls="pointerLockEnabled: false"></a-entity>
+        </a-cylinder>
+    
     </a-scene>
 </body>
 </html>
