@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>nya >_></title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
-    <script src="main.js"></script>
-</head>
-<body>
-    <a-scene fog="color: #DBF7FF; density: .2;" stats> 
-        <a-assets>
-        </a-assets> 
+    <head>
+        <meta charset="UTF-8" />
+        <title>nya >_></title>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <a-scene fog="color: #DBF7FF; density: .2;" stats>
+            <a-assets></a-assets>
+            <a-entity template="src: templates/room.template"></a-entity>
 
-        <a-entity template="src: festival.template"></a-entity>
-
-        <a-entity camera look-controls wasd-controls="acceleration:80" position="0 1.6 0">
-            <a-entity light="type: point"></a-entity>
-        </a-entity>
-    </a-scene>
-</body>
+            <a-entity
+                camera
+                look-controls
+                wasd-controls="acceleration:80"
+                position="-5 0.9 1"
+            >
+                <a-entity light="type: point"></a-entity>
+            </a-entity>
+        </a-scene>
+    </body>
 </html>
