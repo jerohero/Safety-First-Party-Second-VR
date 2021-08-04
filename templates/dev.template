@@ -1,0 +1,14 @@
+<!-- Nav mesh -->
+<a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
+
+<!-- Floor -->
+<a-grid color="green" width="30" height="30" rotation="-90 0 0"></a-grid>
+<a-plane class="floor" color="green" width="30" height="30" position="0 0 -30" rotation="-90 0 0"></a-plane>
+
+<!-- Wall -->
+<a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane>
+
+<!-- Test NPC -->
+<a-cylinder class="collisionTest" aabb-collider="objects: #rig" color="pink" radius=".5" height="3" position="0 1.5 -5">
+    <a-ring radius-inner="2" radius-outer="3" material="side: double" rotation="-90 0 0" position="0 -1 0" color="red" height="1"></a-ring>
+</a-cylinder>

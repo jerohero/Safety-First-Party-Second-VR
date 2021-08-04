@@ -12,7 +12,7 @@ window.onload = () => {
 }
 
 const playerHit = (e) => {
-    console.log('Player has been hit');
+    console.log('Player has been hit')
 }
 
 const randomEnemies = () => {
@@ -29,21 +29,21 @@ const randomEnemies = () => {
             z: Math.floor(Math.random() * 101),
             r: 10
         }
-        overlapping = false;
+        overlapping = false
 
         for (var i = 0; i < enemies.length; i++) {
-            var existing = enemies[i];
-            var d = Math.sqrt((enemy.x - existing.x) ** 2 + (enemy.y - existing.y) ** 2);
+            var existing = enemies[i]
+            var d = Math.sqrt((enemy.x - existing.x) ** 2 + (enemy.y - existing.y) ** 2)
             if (d < enemy.r + existing.r) {
-            overlapping = true;
-            break;
+                overlapping = true;
+                break;
             }
         }
         
         if (!overlapping) {
-            enemies.push(enemy);      
+            enemies.push(enemy)
         }
         
-        counter++;
+        counter++
     }
 }

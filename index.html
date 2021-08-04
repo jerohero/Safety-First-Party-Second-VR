@@ -2,28 +2,25 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>nya >_></title>
-        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <title>IKMEDT</title>
+        <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script> 
+        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
         <script src="main.js"></script>
-        <script src="room.js"></script>
+        <script src="dev.js"></script>
     </head>
     <body>
-        <a-scene fog="color: #DBF7FF; density: .2;" stats>
-            <a-assets> </a-assets>
+        <a-scene fog="color: #DBF7FF; density: .2;" stats inspector-plugin-recast>
+            <a-assets>
+                <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
+            </a-assets>
 
-            <a-entity room template="src: templates/room.template"></a-entity>
+            <a-entity dev template="src: templates/dev.template"></a-entity>
 
-            <!-- Player -->
-            <a-cylinder id="rig" rotation="0 270 0">
-                <a-entity light="type: point"></a-entity>
-                <a-entity
-                    id="camera"
-                    camera
-                    position="1 0.9 5"
-                    look-controls
-                    wasd-controls
-                >
+            <a-cylinder id="rig" movement-controls="speed: 1;" position="0 1 0" height="2" radius=".15" color="crimson">
+                <a-entity camera position="0 1.8 0" look-controls="pointerLockEnabled: false">
                     <a-cursor></a-cursor>
                 </a-entity>
             </a-cylinder>
