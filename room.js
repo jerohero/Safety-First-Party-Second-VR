@@ -10,5 +10,8 @@ const startMoment = () => {
     document
         .getElementById("rig")
         .setAttribute("rotation", { x: 0, y: 90, z: 0 });
+    document
+        .getElementById("cursor")
+        .setAttribute("position", { x: 0, y: 0, z: -0.4 });
     document.getElementById("camera").setAttribute("wasd-controls", false);
 };
