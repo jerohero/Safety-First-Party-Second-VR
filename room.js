@@ -3,6 +3,10 @@ AFRAME.registerComponent("room", {
         startMoment();
     },
 });
+
+defaultCursorPos = { x: 0, y: 0, z: 0 };
+roomCursorPos = { x: 0, y: 0, z: -0.4 };
+
 const startMoment = () => {
     document
         .getElementById("camera")
@@ -12,6 +16,6 @@ const startMoment = () => {
         .setAttribute("rotation", { x: 0, y: 90, z: 0 });
     document
         .getElementById("cursor")
-        .setAttribute("position", { x: 0, y: 0, z: -0.4 });
+        .setAttribute("position", this.roomCursorPos);
     document.getElementById("camera").setAttribute("wasd-controls", false);
 };
