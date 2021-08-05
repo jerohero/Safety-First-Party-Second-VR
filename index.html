@@ -5,17 +5,23 @@
         <title>nya >_></title>
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="main.js"></script>
         <script src="room.js"></script>
+        <script src="onclicks.js"></script>
     </head>
     <body>
-        <a-scene fog="color: #DBF7FF; density: .2;" stats>
-            <a-assets> </a-assets>
+        <a-scene
+            fog="color: #DBF7FF; density: .2;"
+            cursor="rayOrigin: mouse"
+            stats
+        >
+            <a-assets></a-assets>
 
             <a-entity room template="src: templates/room.template"></a-entity>
 
             <!-- Player -->
-            <a-cylinder id="rig" rotation="0 270 0">
+            <a-cylinder id="rig" rotation="0 270 0" onclicks>
                 <a-entity light="type: point"></a-entity>
                 <a-entity
                     id="camera"
@@ -26,8 +32,16 @@
                 >
                     <a-cursor
                         id="cursor"
-                        geometry="primitive: ring; radiusInner: 0.004; radiusOuter: 0.006"
-                    ></a-cursor>
+                        fuse="true"
+                        fuse-timeout="1500"
+                        opacity="0.5"
+                        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 140; from: 0.1 0.1 0.1; to: 1 1 1"
+                        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
+                        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"
+                        geometry="primitive: sphere; radius: 0.005"
+                        raycaster="objects: [onclicks]"
+                    >
+                    </a-cursor>
                 </a-entity>
             </a-cylinder>
         </a-scene>
