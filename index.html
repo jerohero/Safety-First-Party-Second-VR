@@ -22,30 +22,28 @@
             stats
         >
 
+            <!-- Scenes -->
             <a-assets>
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
             </a-assets>
 
-            <a-entity room template="src: templates/room.template"></a-entity>
 
-            <a-entity dev id="dev">
+            <a-entity room id="room-scene" template="src: templates/room.template"></a-entity>
 
-                <!-- Nav mesh -->
+            <a-entity dev id="dev-scene">
                 <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
 
-                <!-- Floor -->
                 <a-grid color="green" width="30" height="30" rotation="-90 0 0"></a-grid>
                 <a-plane class="floor" color="green" width="30" height="30" position="0 0 -30" rotation="-90 0 0"></a-plane>
 
-                <!-- Wall -->
                 <a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane>
 
-                <!-- Test NPC -->
                 <a-cylinder class="collisionTest" aabb-collider="objects: #rig" color="pink" radius=".5" height="3" position="0 1.5 -5">
                     <a-ring radius-inner="2" radius-outer="3" material="side: double" rotation="-90 0 0" position="0 -1 0" color="red" height="1"></a-ring>
                 </a-cylinder>
 
             </a-entity>
+
 
             <!-- Player -->
             <a-cylinder id="rig" rotation="0 270 0"  movement-controls="speed: 1;" position="0 1 0" height="2" radius=".15" color="crimson" onclicks>

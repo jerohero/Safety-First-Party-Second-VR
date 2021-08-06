@@ -1,9 +1,26 @@
-let rig;
+let rig
+let scenes
 
 window.onload = () => {
     rig = document.getElementById('rig')
 
+    scenes = {
+        room: document.getElementById('room-scene'),
+        festival: document.getElementById('dev-scene')
+    }
+
+    toIntroScene()
     randomEnemies()
+}
+
+const toIntroScene = () => {
+    scenes.room.setAttribute('visible', 'true')
+    scenes.festival.setAttribute('visible', 'false')
+}
+
+const toFestivalScene = () => {
+    scenes.room.setAttribute('visible', 'false')
+    scenes.festival.setAttribute('visible', 'true')
 }
 
 const randomEnemies = () => {
