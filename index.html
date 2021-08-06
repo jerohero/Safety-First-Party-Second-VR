@@ -6,18 +6,27 @@
         <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-        <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script> 
+        <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
         <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="main.js"></script>
         <script src="dev.js"></script>
+        <script src="room.js"></script>
+        <script src="onclicks.js"></script>
     </head>
     <body>
-        <a-scene fog="color: #DBF7FF; density: .2;" stats inspector-plugin-recast>
+        <a-scene
+            fog="color: #DBF7FF; density: .2;"
+            cursor="rayOrigin: mouse"
+            inspector-plugin-recast
+            stats
+        >
 
             <a-assets>
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
             </a-assets>
 
+            <a-entity room template="src: templates/room.template"></a-entity>
 
             <a-entity dev id="dev">
 
@@ -38,10 +47,28 @@
 
             </a-entity>
 
-
-            <a-cylinder id="rig" movement-controls="speed: 1;" position="0 1 0" height="2" radius=".15" color="crimson">
-                <a-entity camera position="0 1.8 0" look-controls="pointerLockEnabled: false">
-                    <a-cursor></a-cursor>
+            <!-- Player -->
+            <a-cylinder id="rig" rotation="0 270 0"  movement-controls="speed: 1;" position="0 1 0" height="2" radius=".15" color="crimson" onclicks>
+                <a-entity light="type: point"></a-entity>
+                <a-entity
+                    id="camera"
+                    camera
+                    position="1 0.9 5"
+                    look-controls="pointerLockEnabled: false"
+                    wasd-controls
+                >
+                    <a-cursor
+                        id="cursor"
+                        fuse="true"
+                        fuse-timeout="1500"
+                        opacity="0.5"
+                        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 140; from: 0.1 0.1 0.1; to: 1 1 1"
+                        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
+                        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"
+                        geometry="primitive: sphere; radius: 0.005"
+                        raycaster="objects: [onclicks]"
+                    >
+                    </a-cursor>
                 </a-entity>
             </a-cylinder>
 
