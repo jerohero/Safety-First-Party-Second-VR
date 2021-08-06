@@ -25,10 +25,15 @@
             <!-- Scenes -->
             <a-assets>
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
+                <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
+                <img id="sky" src="assets/sky_day.jpg" />
             </a-assets>
 
-
-            <a-entity room id="room-scene" template="src: templates/room.template"></a-entity>
+            
+            <a-entity room id="room-scene">            
+                <a-sky src="#sky"></a-sky>
+                <a-entity gltf-model="#room"></a-entity>
+            </a-entity>
 
             <a-entity dev id="dev-scene">
                 <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
@@ -41,12 +46,10 @@
                 <a-cylinder class="collisionTest" aabb-collider="objects: #rig" color="pink" radius=".5" height="3" position="0 1.5 -5">
                     <a-ring radius-inner="2" radius-outer="3" material="side: double" rotation="-90 0 0" position="0 -1 0" color="red" height="1"></a-ring>
                 </a-cylinder>
-
             </a-entity>
 
-
             <!-- Player -->
-            <a-cylinder id="rig" rotation="0 270 0"  movement-controls="speed: 1;" position="0 1 0" height="2" radius=".15" color="crimson" onclicks>
+            <a-cylinder id="rig" rotation="0 270 0"  movement-controls="speed: 1;" height="2" radius=".15" color="crimson" onclicks>
                 <a-entity light="type: point"></a-entity>
                 <a-entity
                     id="camera"
