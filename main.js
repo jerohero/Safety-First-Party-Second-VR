@@ -10,6 +10,8 @@ window.onload = () => {
     }
 
     toIntroScene()
+    // toFestivalScene()
+
     randomEnemies()
 }
 
@@ -19,6 +21,8 @@ const toIntroScene = () => {
 }
 
 const toFestivalScene = () => {
+    scenes.room.removeAttribute('room')
+    console.log(scenes.room);
     scenes.room.setAttribute('visible', 'false')
     scenes.festival.setAttribute('visible', 'true')
 }

@@ -22,14 +22,14 @@
             stats
         >
 
-            <!-- Scenes -->
             <a-assets>
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
                 <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
             </a-assets>
 
-            
+
+            <!-- Scenes -->
             <a-entity room id="room-scene">            
                 <a-sky src="#sky"></a-sky>
                 <a-entity gltf-model="#room"></a-entity>
@@ -49,12 +49,11 @@
             </a-entity>
 
             <!-- Player -->
-            <a-cylinder id="rig" rotation="0 270 0"  movement-controls="speed: 1;" height="2" radius=".15" color="crimson" onclicks>
-                <a-entity light="type: point"></a-entity>
+            <a-cylinder id="rig" rotation="0 270 0" movement-controls="speed: 1; constrainToNavMesh: true"" height="2" radius=".15" color="crimson" onclicks>
+                <!-- <a-entity light="type: point"></a-entity> -->
                 <a-entity
                     id="camera"
                     camera
-                    position="1 0.9 5"
                     look-controls="pointerLockEnabled: false"
                     wasd-controls
                 >
