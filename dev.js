@@ -7,6 +7,8 @@ const init = () => {
     console.log('in dev.js')
     const collisionTests = document.getElementsByClassName('collisionTest')
 
+    console.log(document.getElementsByClassName('collisionTest').length);
+
     console.log(collisionTests.length);
     for (const collisionTest of collisionTests) {
         collisionTest.addEventListener('hitstart', hitPlayer)
