@@ -1,15 +1,14 @@
 AFRAME.registerComponent('dev', {
     init: function () {
-        init()
+        initDev()
     },
 });
-const init = () => {
-    console.log('in dev.js')
+const initDev = () => {
+    let camera = document.getElementById("camera")
+    let rig = document.getElementById("rig")
+    let cursor = document.getElementById("cursor")
+
     const collisionTests = document.getElementsByClassName('collisionTest')
-
-    console.log(document.getElementsByClassName('collisionTest').length);
-
-    console.log(collisionTests.length);
     for (const collisionTest of collisionTests) {
         collisionTest.addEventListener('hitstart', hitPlayer)
     }

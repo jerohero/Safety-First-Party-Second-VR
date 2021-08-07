@@ -9,8 +9,8 @@ window.onload = () => {
         festival: document.getElementById('dev-scene')
     }
 
-    toIntroScene()
-    // toFestivalScene()
+    // toIntroScene()
+    toFestivalScene()
 
     randomEnemies()
 }

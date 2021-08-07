@@ -49,13 +49,13 @@
             </a-entity>
 
             <!-- Player -->
-            <a-cylinder id="rig" rotation="0 270 0" movement-controls="speed: 1; constrainToNavMesh: true"" height="2" radius=".15" color="crimson" onclicks>
+            <a-cylinder id="rig" movement-controls="speed: 1; constrainToNavMesh: true" height="2.5" radius=".15" color="crimson" onclicks>
                 <!-- <a-entity light="type: point"></a-entity> -->
                 <a-entity
                     id="camera"
+                    position="0 1.8 0"
                     camera
                     look-controls="pointerLockEnabled: false"
-                    wasd-controls
                 >
                     <a-cursor
                         id="cursor"

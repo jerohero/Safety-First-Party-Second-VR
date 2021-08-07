@@ -1,6 +1,6 @@
 AFRAME.registerComponent("room", {
     init: () => {
-        startMoment();
+        initRoom();
     },
     remove: () => {
         console.log('REMOVE ROOM');
@@ -10,7 +10,7 @@ AFRAME.registerComponent("room", {
 defaultCursorPos = { x: 0, y: 0, z: 0 };
 roomCursorPos = { x: 0, y: 0, z: -0.4 };
 
-const startMoment = () => {
+const initRoom = () => {
     let camera = document.getElementById("camera")
     let rig = document.getElementById("rig")
     let cursor = document.getElementById("cursor")
@@ -19,7 +19,6 @@ const startMoment = () => {
     rig.removeAttribute("movement-controls")
 
     camera.setAttribute("position", { x: -2.8, y: 0.9, z: -5.3 });
-    camera.setAttribute("wasd-controls", false);
 
     cursor.setAttribute("position", this.roomCursorPos);
 };
