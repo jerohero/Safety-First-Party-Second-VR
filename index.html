@@ -5,18 +5,31 @@
         <title>nya >_></title>
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="main.js"></script>
+        <script src="dev.js"></script>
         <script src="room.js"></script>
-        <script src="onclicks.js"></script>
+        <script src="onhover.js"></script>
     </head>
     <body>
         <a-scene
             fog="color: #DBF7FF; density: .2;"
             cursor="rayOrigin: mouse"
+            inspector-plugin-recast
             stats
         >
             <a-assets>
+                <a-asset-item
+                    id="nav-mesh"
+                    src="assets/navmesh.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="room"
+                    src="assets/room-with-roof.glb"
+                ></a-asset-item>
                 <a-asset-item
                     id="green-arrow"
                     src="assets/green-arrow.glb"
@@ -25,19 +38,90 @@
                     id="red-arrow"
                     src="assets/red-arrow.glb"
                 ></a-asset-item>
+                <img id="sky" src="assets/sky_day.jpg" />
             </a-assets>
 
-            <a-entity room template="src: templates/room.template"></a-entity>
+            <!-- Scenes -->
+            <a-entity room id="room-scene">
+                <a-sky src="#sky"></a-sky>
+                <a-entity gltf-model="#room"></a-entity>
+                <a-entity
+                    gltf-model="#green-arrow"
+                    position="-5.765 0.829 2.571"
+                    scale="0.3 0.3 0.3"
+                    rotation="0 -130 90"
+                    onhovergreen
+                ></a-entity>
+                <a-entity
+                    gltf-model="#red-arrow"
+                    position="-5.765 0.829 2.978"
+                    scale="0.3 0.3 0.3"
+                    rotation="0 130 90"
+                    onhoverred
+                ></a-entity>
+            </a-entity>
+
+            <a-entity dev id="dev-scene">
+                <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
+
+                <a-grid
+                    color="green"
+                    width="30"
+                    height="30"
+                    rotation="-90 0 0"
+                ></a-grid>
+                <a-plane
+                    class="floor"
+                    color="green"
+                    width="30"
+                    height="30"
+                    position="0 0 -30"
+                    rotation="-90 0 0"
+                ></a-plane>
+
+                <a-plane
+                    class="wall"
+                    color="grey"
+                    width="10"
+                    height="10"
+                    position="0 5 -20"
+                    rotation="0 0 0"
+                ></a-plane>
+
+                <a-cylinder
+                    class="collisionTest"
+                    aabb-collider="objects: #rig"
+                    color="pink"
+                    radius=".5"
+                    height="3"
+                    position="0 1.5 -5"
+                >
+                    <a-ring
+                        radius-inner="2"
+                        radius-outer="3"
+                        material="side: double"
+                        rotation="-90 0 0"
+                        position="0 -1 0"
+                        color="red"
+                        height="1"
+                    ></a-ring>
+                </a-cylinder>
+            </a-entity>
 
             <!-- Player -->
-            <a-cylinder id="rig" rotation="0 270 0" onclicks>
-                <a-entity light="type: point"></a-entity>
+            <a-cylinder
+                id="rig"
+                movement-controls="speed: 1; constrainToNavMesh: true"
+                height="2.5"
+                radius=".15"
+                color="crimson"
+            >
+                <!-- <a-entity light="type: point"></a-entity> -->
                 <a-entity
                     id="camera"
+                    position="0 1.8 0"
                     camera
-                    position="1 0.9 5"
-                    look-controls
-                    wasd-controls
+                    look-controls="pointerLockEnabled: false"
                 >
                     <a-cursor
                         id="cursor"
@@ -48,7 +132,7 @@
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"
                         geometry="primitive: sphere; radius: 0.005"
-                        raycaster="objects: [onclicks]"
+                        raycaster="objects: [onhovergreen], [onhoverred]"
                     >
                     </a-cursor>
                 </a-entity>
