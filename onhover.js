@@ -14,9 +14,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     document
         .getElementById("redArrow")
         .addEventListener("click", function (evt) {
-            index -= 1;
-            textPlane.setAttribute("text", `value: ${text[index]}`);
-            console.log("redklik XD");
+            if (index == 0) {
+                textPlane.setAttribute("text", `value: ${text[index]}`);
+            } else {
+                index -= 1;
+                textPlane.setAttribute("text", `value: ${text[index]}`);
+                console.log("redklik XD");
+            }
         });
 });
 
