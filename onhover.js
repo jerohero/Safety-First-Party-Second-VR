@@ -1,24 +1,35 @@
+window.addEventListener("DOMContentLoaded", (event) => {
+    let index = 0;
+    const text = ["Tekst 1", "Tekst 2", "Tekst 3"];
+    const textPlane = document.getElementById("textPlane");
+    textPlane.setAttribute("text", `value: ${text[index]}`);
+    document
+        .getElementById("greenArrow")
+        .addEventListener("click", function (evt) {
+            index += 1;
+            console.log(text[index]);
+            textPlane.setAttribute("text", `value: ${text[index]}`);
+            console.log("klik XD");
+        });
+    document
+        .getElementById("redArrow")
+        .addEventListener("click", function (evt) {
+            index -= 1;
+            textPlane.setAttribute("text", `value: ${text[index]}`);
+            console.log("redklik XD");
+        });
+});
+
 AFRAME.registerComponent("onhovergreen", {
     init: function () {
         const cursor = document.getElementById("cursor");
-        let i = 0;
 
         this.el.addEventListener("mouseenter", (event) => {
-            cursor.setAttribute("color", "red");
-        });
-
-        this.el.addEventListener("click", (event) => {
-            cursor.setAttribute("color", "red");
-            i += 1;
-            console.log("green arrow", i);
-            event.stopPropagation();
-            event.preventDefault();
+            cursor.setAttribute("color", "blue");
         });
 
         this.el.addEventListener("mouseleave", (event) => {
             cursor.setAttribute("color", "black");
-            event.stopPropagation();
-            event.preventDefault();
         });
     },
 });
@@ -29,21 +40,11 @@ AFRAME.registerComponent("onhoverred", {
         let i = 0;
 
         this.el.addEventListener("mouseenter", (event) => {
-            cursor.setAttribute("color", "red");
-        });
-
-        this.el.addEventListener("click", (event) => {
-            cursor.setAttribute("color", "red");
-            i += 1;
-            console.log("red arrow", i);
-            event.stopPropagation();
-            event.preventDefault();
+            cursor.setAttribute("color", "blue");
         });
 
         this.el.addEventListener("mouseleave", (event) => {
             cursor.setAttribute("color", "black");
-            event.stopPropagation();
-            event.preventDefault();
         });
     },
 });
