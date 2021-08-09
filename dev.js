@@ -25,10 +25,12 @@ const randomEnemies = () => {
     const enemiesEl = document.getElementById('enemies')
     const enemies = generateEnemiesList()
     const test = document.getElementsByClassName('collisionTest')[0]
+    const colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green']
 
     enemies.forEach((enemy) => {
         const e = test.cloneNode(true)
         e.setAttribute('position', { x: enemy.x, y: -.2, z: enemy.z })
+        e.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
 
         enemiesEl.appendChild(e)
     })
