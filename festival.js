@@ -40,7 +40,7 @@ const generateEnemiesList = () => {
     var enemies = [],
         enemy = {},
         overlapping = false,
-        maxEnemies = 400,
+        maxEnemies = 50,
         protection = 10000,
         counter = 0
 
