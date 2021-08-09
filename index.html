@@ -26,6 +26,7 @@
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
                 <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
+                <a-asset-item id="festival" src="assets/festival.gltf"></a-asset-item>
             </a-assets>
 
 
@@ -36,6 +37,11 @@
             </a-entity>
 
             <a-entity dev id="dev-scene">
+                <!-- <a-sky src="#sky"></a-sky>
+                <a-entity gltf-model="#festival" scale="20 20 20" position="0 -.1 0"></a-entity>
+                <a-entity light="intensity: 3;" position="40 19 22"></a-entity>
+                <a-entity light="intensity: 2; type: point" position="-55 60 -6"></a-entity> -->
+
                 <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
 
                 <a-grid color="green" width="30" height="30" rotation="-90 0 0"></a-grid>
@@ -43,10 +49,14 @@
 
                 <a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane>
 
-                <a-cylinder class="collisionTest" aabb-collider="objects: #rig" color="pink" radius=".5" height="3" position="0 1.5 -5">
-                    <a-ring radius-inner="2" radius-outer="3" material="side: double" rotation="-90 0 0" position="0 -1 0" color="red" height="1"></a-ring>
+                <a-entity id="enemies">
+                </a-entity>
+
+                <a-cylinder class="collisionTest" color="pink" radius=".5" height="3" position="0 1.5 -5">
+                    <a-ring radius-inner="2" aabb-collider="objects: #rig" radius-outer="3" rotation="-90 0 0" position="0 -1 0" color="red" height="1"></a-ring>
                 </a-cylinder>
             </a-entity>
+
 
             <!-- Player -->
             <a-cylinder id="rig" movement-controls="speed: 1; constrainToNavMesh: true" height="2.5" radius=".15" color="crimson" onclicks>

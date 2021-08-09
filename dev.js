@@ -22,15 +22,23 @@ const hitPlayer = (e) => {
 }
 
 const randomEnemies = () => {
+    const enemiesEl = document.getElementById('enemies')
     const enemies = generateEnemiesList()
-    console.log(enemies);
+    const test = document.getElementsByClassName('collisionTest')[0]
+
+    enemies.forEach((enemy) => {
+        const e = test.cloneNode(true)
+        e.setAttribute('position', { x: enemy.x, y: 1.5, z: enemy.z })
+
+        enemiesEl.appendChild(e)
+    })
 }
 
 const generateEnemiesList = () => {
     var enemies = [],
         enemy = {},
         overlapping = false,
-        maxEnemies = 200,
+        maxEnemies = 100,
         protection = 10000,
         counter = 0
 
