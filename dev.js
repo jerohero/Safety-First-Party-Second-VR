@@ -38,14 +38,14 @@ const generateEnemiesList = () => {
     var enemies = [],
         enemy = {},
         overlapping = false,
-        maxEnemies = 100,
+        maxEnemies = 400,
         protection = 10000,
         counter = 0
 
     while (enemies.length < maxEnemies && counter < protection) {
         enemy = {
-            x: Math.floor(Math.random() * 101),
-            z: Math.floor(Math.random() * 101),
+            x: Math.floor(Math.random() * 201),
+            z: Math.floor(Math.random() * 201),
             r: 10
         }
         overlapping = false
