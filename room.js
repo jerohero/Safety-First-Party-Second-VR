@@ -44,9 +44,9 @@ const initRoom = () => {
     let rig = document.getElementById("rig");
     let cursor = document.getElementById("cursor");
     rig.setAttribute("rotation", { x: 0, y: 90, z: 0 });
-    rig.removeAttribute("movement-controls");
+    // rig.removeAttribute("movement-controls");
 
-    camera.setAttribute("position", { x: -2.8, y: 0.9, z: -5.3 });
-
+    rig.setAttribute("position", { x: 0, y: 0, z: 0 });
+    camera.setAttribute("position", { x: 0, y: 1, z: 0 });
     cursor.setAttribute("position", this.roomCursorPos);
 };

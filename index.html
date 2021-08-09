@@ -3,11 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <title>nya >_></title>
-        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
         <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
         <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="main.js"></script>
         <script src="dev.js"></script>
@@ -17,7 +18,6 @@
     <body>
         <a-scene
             fog="color: #DBF7FF; density: .2;"
-            cursor="rayOrigin: mouse"
             inspector-plugin-recast
             stats
         >
@@ -25,6 +25,10 @@
                 <a-asset-item
                     id="nav-mesh"
                     src="assets/navmesh.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="nav-mesh-room"
+                    src="assets/navmeshroom.glb"
                 ></a-asset-item>
                 <a-asset-item
                     id="room"
@@ -44,6 +48,13 @@
             <!-- Scenes -->
             <a-entity room id="room-scene">
                 <a-sky src="#sky"></a-sky>
+
+                <a-entity
+                    gltf-model="#nav-mesh-room"
+                    position="-2.874 0 2.078"
+                    nav-mesh
+                ></a-entity>
+
                 <a-entity gltf-model="#room"></a-entity>
                 <a-entity
                     id="greenArrow"
@@ -73,7 +84,7 @@
             </a-entity>
 
             <a-entity dev id="dev-scene">
-                <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
+                <!-- <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity> -->
 
                 <a-grid
                     color="green"
