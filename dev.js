@@ -28,7 +28,7 @@ const randomEnemies = () => {
 
     enemies.forEach((enemy) => {
         const e = test.cloneNode(true)
-        e.setAttribute('position', { x: enemy.x, y: 1.5, z: enemy.z })
+        e.setAttribute('position', { x: enemy.x, y: -.2, z: enemy.z })
 
         enemiesEl.appendChild(e)
     })
