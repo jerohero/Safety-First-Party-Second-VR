@@ -1,13 +1,15 @@
 AFRAME.registerComponent('festival', {
     init: function () {
         initFestival()
-    },
+    }
 });
 
 const initFestival = () => {
     let camera = document.getElementById("camera")
     let rig = document.getElementById("rig")
     let cursor = document.getElementById("cursor")
+    this.exposure = 0
+    this.MAX_EXPOSURE = 3
 
     randomEnemies()
 
@@ -17,8 +19,21 @@ const initFestival = () => {
     }
 }
 
-const hitPlayer = (e) => {
+const hitPlayer = () => {
+    setPlayerExposure(this.exposure + 1)
+
+    if (this.exposure >= this.MAX_EXPOSURE) {
+        return console.log('Exposure reached max');
+    }
+
     console.log('Player has been hit')
+}
+
+const setPlayerExposure = (newExposure) => {
+    this.exposure = newExposure
+    let playerExposure = document.getElementById('player-exposure')
+
+    playerExposure.setAttribute('text', `value: ${newExposure}/${this.MAX_EXPOSURE}; align: center; color: black; width: .6;`)
 }
 
 const randomEnemies = () => {
