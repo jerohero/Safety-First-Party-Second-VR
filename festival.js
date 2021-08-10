@@ -5,9 +5,6 @@ AFRAME.registerComponent('festival', {
 });
 
 const initFestival = () => {
-    let camera = document.getElementById("camera")
-    let rig = document.getElementById("rig")
-    let cursor = document.getElementById("cursor")
     this.exposure = 0
     this.MAX_EXPOSURE = 3
 
@@ -33,7 +30,20 @@ const setPlayerExposure = (newExposure) => {
     this.exposure = newExposure
     let playerExposure = document.getElementById('player-exposure')
 
-    playerExposure.setAttribute('text', `value: ${newExposure}/${this.MAX_EXPOSURE}; align: center; color: black; width: .6;`)
+    let color
+    switch (newExposure) {
+        case 0:
+            color = 'green'
+            break
+        case 1:
+            color = 'orange'
+            break
+        default:
+            color = 'red'
+            break
+    }
+
+    playerExposure.setAttribute('text', `value: ${newExposure}/${this.MAX_EXPOSURE}; align: center; color: ${color}; width: .6;`)
 }
 
 const randomEnemies = () => {

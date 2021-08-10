@@ -39,9 +39,9 @@
 
             <a-entity festival id="festival-scene" position="0 1 0">
                 <a-sky src="#sky"></a-sky>
-                <!-- <a-entity gltf-model="#festival" scale="20 20 20" position="-15 -1.2 -110" rotation="0 -60 0"></a-entity> -->
-                <!-- <a-entity light="intensity: 3;" position="40 19 22"></a-entity>
-                <a-entity light="intensity: 2; type: point" position="-55 60 -6"></a-entity> -->
+                <a-entity gltf-model="#festival" scale="20 20 20" position="-15 -1.2 -110" rotation="0 -60 0"></a-entity>
+                <a-entity light="intensity: 3;" position="40 110 22"></a-entity>
+                <a-entity light="intensity: 2; type: point" position="-55 120 -235"></a-entity>
 
                 <!-- <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
                 <a-grid color="green" width="30" height="30" rotation="-90 0 0"></a-grid>
@@ -61,7 +61,7 @@
 
             <!-- Player -->
             <a-entity id="rig" movement-controls="speed: .3; constrainToNavMesh: true" onclicks>
-                <!-- <a-entity light="type: point"></a-entity> -->
+                <a-entity light="type: point"></a-entity>
                 <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
                 <a-entity
                     id="camera"
@@ -71,8 +71,8 @@
                 >
                     <a-entity
                         id="player-exposure"
-                        text="value: 0/3; align: center; color: black; width: .6;"
-                        position="0 .3 -1"
+                        text="value: 0/3; align: center; color: green; width: .6;"
+                        position="0 .2 -1"
                     >
                         <a-image
                             src="#corona"
