@@ -52,19 +52,20 @@
                 <a-entity id="enemies" position="-135 0 -210 ">
                 </a-entity>
 
-                <a-cylinder class="collisionTest" color="pink" radius=".2" height="1.8" position="0 -.2 -5">
-                    <a-sphere src="#face1" position="0 1.2 0" radius=".5" rotation="0 -90 0"></a-sphere>
-                    <a-ring radius-inner="1.5" radius-outer="2" aabb-collider="objects: #rig" rotation="-90 0 0" position="0 -.6 0" color="red"></a-ring>
+                <a-cylinder class="collisionTest" color="pink" radius=".08" height="1.5" position="0 -.2 -5">
+                    <a-sphere src="#face1" position="0 .9 0" radius=".3" rotation="0 -90 0"></a-sphere>
+                    <a-ring radius-inner="0.6" radius-outer="0.75" aabb-collider="objects: #player-ring" rotation="-90 0 0" position="0 -.6 0" color="red"></a-ring>
                 </a-cylinder>
             </a-entity>
 
 
             <!-- Player -->
-            <a-cylinder id="rig" movement-controls="speed: 1; constrainToNavMesh: true" height="2.5" radius=".15" color="crimson" onclicks>
+            <a-entity id="rig" movement-controls="speed: .3; constrainToNavMesh: true" onclicks>
                 <!-- <a-entity light="type: point"></a-entity> -->
+                <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
                 <a-entity
                     id="camera"
-                    position="0 1.8 0"
+                    position="0 1.7 0"
                     camera
                     look-controls="pointerLockEnabled: false"
                 >
