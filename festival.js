@@ -1,10 +1,10 @@
-AFRAME.registerComponent('dev', {
+AFRAME.registerComponent('festival', {
     init: function () {
-        initDev()
+        initFestival()
     },
 });
 
-const initDev = () => {
+const initFestival = () => {
     let camera = document.getElementById("camera")
     let rig = document.getElementById("rig")
     let cursor = document.getElementById("cursor")

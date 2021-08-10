@@ -6,7 +6,7 @@ window.onload = () => {
 
     scenes = {
         room: document.getElementById('room-scene'),
-        festival: document.getElementById('dev-scene')
+        festival: document.getElementById('festival-scene')
     }
 
     // toIntroScene()
