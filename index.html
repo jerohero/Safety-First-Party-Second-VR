@@ -27,6 +27,7 @@
                 <a-asset-item id="festival" src="assets/festival.gltf"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
                 <img id="face1" src="assets/m_face1.png" />
+                <img id="corona" src="assets/corona.png" />
             </a-assets>
 
 
@@ -39,8 +40,8 @@
             <a-entity festival id="festival-scene" position="0 1 0">
                 <a-sky src="#sky"></a-sky>
                 <!-- <a-entity gltf-model="#festival" scale="20 20 20" position="-15 -1.2 -110" rotation="0 -60 0"></a-entity> -->
-                <a-entity light="intensity: 3;" position="40 19 22"></a-entity>
-                <a-entity light="intensity: 2; type: point" position="-55 60 -6"></a-entity>
+                <!-- <a-entity light="intensity: 3;" position="40 19 22"></a-entity>
+                <a-entity light="intensity: 2; type: point" position="-55 60 -6"></a-entity> -->
 
                 <!-- <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
                 <a-grid color="green" width="30" height="30" rotation="-90 0 0"></a-grid>
@@ -67,6 +68,18 @@
                     camera
                     look-controls="pointerLockEnabled: false"
                 >
+                    <a-entity 
+                        text="value: 0/3; align: center; color: black; width: .6;"
+                        position="0 .3 -1"
+                    >
+                        <a-image
+                            src="#corona"
+                            height=".03"
+                            width=".03"
+                            position="-.05 0 0"
+                        >
+                        </a-image>
+                    </a-entity>
                     <a-cursor
                         id="cursor"
                         fuse="true"
