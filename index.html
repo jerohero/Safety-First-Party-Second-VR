@@ -12,7 +12,7 @@
         <script src="main.js"></script>
         <script src="festival.js"></script>
         <script src="room.js"></script>
-        <script src="onclicks.js"></script>
+        <script src="onhover.js"></script>
     </head>
     <body>
         <a-scene
@@ -22,9 +22,30 @@
         >
 
             <a-assets>
-                <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
-                <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
-                <a-asset-item id="festival" src="assets/festival.gltf"></a-asset-item>
+                <a-asset-item
+                    id="nav-mesh"
+                    src="assets/navmesh.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="festival"
+                    src="assets/festival.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="nav-mesh-room"
+                    src="assets/navmeshroom.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="room"
+                    src="assets/room-with-roof.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="green-arrow"
+                    src="assets/green-arrow.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="red-arrow"
+                    src="assets/red-arrow.glb"
+                ></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
                 <img id="face1" src="assets/m_face1.png" />
                 <img id="corona" src="assets/corona.png" />
@@ -32,9 +53,41 @@
 
 
             <!-- Scenes -->
-            <a-entity room id="room-scene">            
+            <a-entity room id="room-scene">
                 <a-sky src="#sky"></a-sky>
+
+                <a-entity
+                    gltf-model="#nav-mesh-room"
+                    position="-2.874 0 2.078"
+                    nav-mesh
+                ></a-entity>
+
                 <a-entity gltf-model="#room"></a-entity>
+                <a-entity
+                    id="greenArrow"
+                    gltf-model="#green-arrow"
+                    position="-5.765 0.829 2.571"
+                    scale="0.3 0.3 0.3"
+                    rotation="0 -130 90"
+                    onhovergreen
+                ></a-entity>
+                <a-entity
+                    id="redArrow"
+                    gltf-model="#red-arrow"
+                    position="-5.765 0.829 2.978"
+                    scale="0.3 0.3 0.3"
+                    rotation="0 130 90"
+                    onhoverred
+                ></a-entity>
+                <a-entity
+                    id="textPlane"
+                    text="value: Hi;  color: black; align: center;"
+                    scale="0.39 0.39 0.39"
+                    geometry="primitive: plane; width: 0.980; height: 0.550"
+                    position="-5.765 0.838 2.775"
+                    material="opacity: 0.0; transparent: true"
+                    rotation="0 89.000 0"
+                ></a-entity>
             </a-entity>
 
             <a-entity festival id="festival-scene" position="0 1 0">
@@ -114,7 +167,7 @@
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"
                         geometry="primitive: sphere; radius: 0.005"
-                        raycaster="objects: [onclicks]"
+                        raycaster="objects: [onhovergreen], [onhoverred]"
                     >
                     </a-cursor>
 
