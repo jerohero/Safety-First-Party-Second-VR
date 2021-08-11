@@ -9,11 +9,20 @@ const initFestival = () => {
     this.MAX_EXPOSURE = 3
 
     randomEnemies()
+    initFailScreen()
 
     const collisionTests = document.getElementsByClassName('collisionTest')
     for (const collisionTest of collisionTests) {
         collisionTest.addEventListener('hitstart', hitPlayer)
     }
+}
+
+const initFailScreen = () => {
+    document
+    .getElementById("restart-button")
+    .addEventListener("click", function (evt) {
+        console.log('restart');
+    });
 }
 
 const hitPlayer = () => {
