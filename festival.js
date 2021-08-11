@@ -8,17 +8,16 @@ const initFestival = () => {
     this.exposure = 0
     this.MAX_EXPOSURE = 3
 
-    randomEnemies()
+    document.getElementsByClassName('collisionTest')[0].addEventListener('hitstart', hitPlayer)
 
-    const collisionTests = document.getElementsByClassName('collisionTest')
-    for (const collisionTest of collisionTests) {
-        collisionTest.addEventListener('hitstart', hitPlayer)
-    }
+    randomEnemies()
 }
 
 const restart = () => {
     hideFailScreen()
     document.getElementById('rig').setAttribute('position', '0 0 0')
+    setPlayerExposure(0)
+
     console.log('restart')
 }
 
@@ -27,6 +26,7 @@ const hitPlayer = () => {
 
     if (this.exposure >= this.MAX_EXPOSURE) {
         showFailScreen()
+
         return
     }
 }
@@ -34,6 +34,7 @@ const hitPlayer = () => {
 const showFailScreen = () => {
     document.getElementById('fail-screen').setAttribute('visible', 'true')
     document.getElementById('enemies').setAttribute('visible', 'false')
+    document.getElementById('player-exposure').setAttribute('visible', 'false')
     document.getElementById('restart-button').setAttribute('clickable', 'true')
     document.getElementById('restart-button').addEventListener('click', (evt) => {
         restart()
@@ -44,6 +45,7 @@ const showFailScreen = () => {
 const hideFailScreen = () => {
     document.getElementById('fail-screen').setAttribute('visible', 'false')
     document.getElementById('enemies').setAttribute('visible', 'true')
+    document.getElementById('player-exposure').setAttribute('visible', 'true')
     document.getElementById('restart-button').removeAttribute('clickable')
 }
 
@@ -77,6 +79,7 @@ const randomEnemies = () => {
         const e = test.cloneNode(true)
         e.setAttribute('position', { x: enemy.x, y: -.2, z: enemy.z })
         e.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
+        e.addEventListener('hitstart', hitPlayer)
 
         enemiesEl.appendChild(e)
     })
