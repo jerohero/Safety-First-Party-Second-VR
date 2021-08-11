@@ -62,7 +62,29 @@
             <!-- Player -->
             <a-entity id="rig" movement-controls="speed: .3; constrainToNavMesh: true" onclicks>
                 <a-entity light="type: point"></a-entity>
+
                 <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
+
+                <a-plane id="fail-screen" color="white" width="5" height="3" position="0 1.25 -2" rotation="0 0 0">
+                    <a-entity
+                        text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
+                        position="0 .5 .05"
+                    >
+                        <a-entity
+                            text="value: Probeer 1.5 meter afstand te houden van anderen\nom uw kans op besmetting te verlagen.; align: center; color: black; width: 2;"
+                            position="0 -.4 0"
+                        >
+                        </a-entity>
+                        <a-image
+                            src="#corona"
+                            height=".5"
+                            width=".5"
+                            position="0 .5 -.04"
+                        >
+                        </a-image>
+                    </a-entity>
+                </a-plane>
+
                 <a-entity
                     id="camera"
                     position="0 1.7 0"
@@ -82,6 +104,7 @@
                         >
                         </a-image>
                     </a-entity>
+
                     <a-cursor
                         id="cursor"
                         fuse="true"
@@ -94,6 +117,7 @@
                         raycaster="objects: [onclicks]"
                     >
                     </a-cursor>
+
                 </a-entity>
             </a-cylinder>
 
