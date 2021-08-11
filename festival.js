@@ -9,7 +9,6 @@ const initFestival = () => {
     this.MAX_EXPOSURE = 3
 
     randomEnemies()
-    initFailScreen()
 
     const collisionTests = document.getElementsByClassName('collisionTest')
     for (const collisionTest of collisionTests) {
@@ -17,22 +16,35 @@ const initFestival = () => {
     }
 }
 
-const initFailScreen = () => {
-    document
-    .getElementById("restart-button")
-    .addEventListener("click", function (evt) {
-        console.log('restart');
-    });
+const restart = () => {
+    hideFailScreen()
+    document.getElementById('rig').setAttribute('position', '0 0 0')
+    console.log('restart')
 }
 
 const hitPlayer = () => {
     setPlayerExposure(this.exposure + 1)
 
     if (this.exposure >= this.MAX_EXPOSURE) {
-        return console.log('Exposure reached max');
+        showFailScreen()
+        return
     }
+}
 
-    console.log('Player has been hit')
+const showFailScreen = () => {
+    document.getElementById('fail-screen').setAttribute('visible', 'true')
+    document.getElementById('enemies').setAttribute('visible', 'false')
+    document.getElementById('restart-button').setAttribute('clickable', 'true')
+    document.getElementById('restart-button').addEventListener('click', (evt) => {
+        restart()
+    })
+    // todo disable movement
+}
+
+const hideFailScreen = () => {
+    document.getElementById('fail-screen').setAttribute('visible', 'false')
+    document.getElementById('enemies').setAttribute('visible', 'true')
+    document.getElementById('restart-button').removeAttribute('clickable')
 }
 
 const setPlayerExposure = (newExposure) => {

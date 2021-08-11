@@ -27,7 +27,7 @@ AFRAME.registerComponent("onhoverred", {
     },
 });
 
-AFRAME.registerComponent("onhoverbutton", {
+AFRAME.registerComponent("clickable", {
     init: function () {
         const cursor = document.getElementById("cursor");
 

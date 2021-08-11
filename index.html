@@ -118,7 +118,7 @@
 
                 <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
 
-                <a-plane id="fail-screen" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
+                <a-plane id="fail-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
                     <a-entity
                         text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
                         position="0 .5 .05"
@@ -174,7 +174,7 @@
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"
                         geometry="primitive: sphere; radius: 0.005"
-                        raycaster="objects: [onhovergreen], [onhoverred], [onhoverbutton]"
+                        raycaster="objects: [onhovergreen], [onhoverred], [clickable]"
                     >
                     </a-cursor>
 
