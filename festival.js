@@ -11,18 +11,18 @@ const initFestival = () => {
     document.getElementsByClassName('collisionTest')[0].addEventListener('hitstart', hitPlayer)
 
     initCheckpoints()
-
-    randomEnemiesForArea(1, {x: 81, z: 51, amount: 100})
-    randomEnemiesForArea(2, {x: 81, z: 51, amount: 200})
+    // randomEnemiesForArea(2, {x: 81, z: 51, amount: 200})
 }
 
 const initCheckpoints = () => {
-    const enemies1 = document.getElementById('enemies-area1')
-    const enemies2 = document.getElementById('enemies-area2')
+    randomEnemiesForArea(1, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }})
 
     document.getElementById('checkpoint-area2').addEventListener('hitstart', () => {
-        enemies1.setAttribute('visible', !enemies1.getAttribute('visible'))
-        enemies2.setAttribute('visible', !enemies2.getAttribute('visible'))
+        if (this.activeCheckpoint === 1) {
+            randomEnemiesForArea(2, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -50 }})
+        } else {
+            randomEnemiesForArea(1, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }})
+        }
     })
 }
 
@@ -83,7 +83,18 @@ const setPlayerExposure = (newExposure) => {
 }
 
 const randomEnemiesForArea = (area, areaData) => {
-    const enemiesEl = document.getElementById('enemies-area' + area)
+    this.activeCheckpoint = area
+
+    const enemiesAreas = document.getElementById('enemies')
+
+    while (enemiesAreas.firstChild) {
+        enemiesAreas.firstChild.remove()
+    }
+
+    const newArea = document.createElement('a-entity')
+    newArea.setAttribute('position', areaData.position)
+    enemiesAreas.appendChild(newArea)
+    
     const enemies = generateEnemiesList(areaData)
     const test = document.getElementsByClassName('collisionTest')[0]
     const colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green']
@@ -94,7 +105,7 @@ const randomEnemiesForArea = (area, areaData) => {
         e.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
         e.addEventListener('hitstart', hitPlayer)
 
-        enemiesEl.appendChild(e)
+        newArea.appendChild(e)
     })
 }
 
@@ -108,8 +119,8 @@ const generateEnemiesList = (areaData) => {
 
     while (enemies.length < maxEnemies && counter < protection) {
         enemy = {
-            x: Math.floor(Math.random() * areaData.x),
-            z: Math.floor(Math.random() * areaData.z),
+            x: Math.floor(Math.random() * areaData.width),
+            z: Math.floor(Math.random() * areaData.height),
             r: 10
         }
         overlapping = false
