@@ -10,7 +10,7 @@ const initFestival = () => {
 
     document.getElementsByClassName('collisionTest')[0].addEventListener('hitstart', hitPlayer)
 
-    randomEnemies()
+    randomEnemiesForArea(1, {x: 81, z: 51, amount: 200})
 }
 
 const restart = () => {
@@ -69,9 +69,9 @@ const setPlayerExposure = (newExposure) => {
     playerExposure.setAttribute('text', `value: ${newExposure}/${this.MAX_EXPOSURE}; align: center; color: ${color}; width: .6;`)
 }
 
-const randomEnemies = () => {
-    const enemiesEl = document.getElementById('enemies')
-    const enemies = generateEnemiesList()
+const randomEnemiesForArea = (area, areaData) => {
+    const enemiesEl = document.getElementById('enemies-area' + area)
+    const enemies = generateEnemiesList(areaData)
     const test = document.getElementsByClassName('collisionTest')[0]
     const colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green']
 
@@ -85,18 +85,18 @@ const randomEnemies = () => {
     })
 }
 
-const generateEnemiesList = () => {
+const generateEnemiesList = (areaData) => {
     var enemies = [],
         enemy = {},
         overlapping = false,
-        maxEnemies = 50,
+        maxEnemies = areaData.amount,
         protection = 10000,
         counter = 0
 
     while (enemies.length < maxEnemies && counter < protection) {
         enemy = {
-            x: Math.floor(Math.random() * 201),
-            z: Math.floor(Math.random() * 201),
+            x: Math.floor(Math.random() * areaData.x),
+            z: Math.floor(Math.random() * areaData.z),
             r: 10
         }
         overlapping = false
