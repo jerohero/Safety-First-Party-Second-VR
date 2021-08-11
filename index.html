@@ -102,9 +102,15 @@
 
                 <a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane> -->
 
+                <a-plane id="checkpoint-area2" aabb-collider="objects: #player-ring" 
+                    color="grey" width="100" height="10" position="0 0 -55" rotation="0 0 0"
+                    visible="false"
+                ></a-plane>
+
                 <a-entity id="enemies" position="-45 0 -60">
-                    <a-entity id="enemies-area1" position="0 0 0">
-                    </a-entity>
+                    <a-entity id="enemies-area1" position="0 0 0"></a-entity>
+                    <a-entity id="enemies-area2" visible="false" position="0 0 -50"></a-entity>
+                    <a-entity id="enemies-area3" visible="false" position="0 0 -100"></a-entity>
                 </a-entity>
 
                 <a-cylinder class="collisionTest" color="pink" radius=".08" height="1.5" position="0 -.2 -5">

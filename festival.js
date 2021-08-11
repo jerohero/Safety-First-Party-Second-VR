@@ -10,7 +10,20 @@ const initFestival = () => {
 
     document.getElementsByClassName('collisionTest')[0].addEventListener('hitstart', hitPlayer)
 
-    randomEnemiesForArea(1, {x: 81, z: 51, amount: 200})
+    initCheckpoints()
+
+    randomEnemiesForArea(1, {x: 81, z: 51, amount: 100})
+    randomEnemiesForArea(2, {x: 81, z: 51, amount: 200})
+}
+
+const initCheckpoints = () => {
+    const enemies1 = document.getElementById('enemies-area1')
+    const enemies2 = document.getElementById('enemies-area2')
+
+    document.getElementById('checkpoint-area2').addEventListener('hitstart', () => {
+        enemies1.setAttribute('visible', !enemies1.getAttribute('visible'))
+        enemies2.setAttribute('visible', !enemies2.getAttribute('visible'))
+    })
 }
 
 const restart = () => {
