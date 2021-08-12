@@ -30,6 +30,7 @@ const restart = () => {
     hideFailScreen()
     document.getElementById('rig').setAttribute('position', '0 0 0')
     setPlayerExposure(0)
+    randomEnemiesForArea(1, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }})
 
     console.log('restart')
 }
