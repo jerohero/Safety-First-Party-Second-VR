@@ -9,6 +9,7 @@ const initFestival = () => {
     this.MAX_EXPOSURE = 3
 
     document.getElementsByClassName('collisionTest')[0].addEventListener('hitstart', hitPlayer)
+    document.getElementById('finish').addEventListener('hitstart', endReached)
 
     initCheckpoints()
     // randomEnemiesForArea(2, {x: 81, z: 51, amount: 200})
@@ -83,6 +84,10 @@ const hitPlayer = () => {
 
         return
     }
+}
+
+const endReached = () => {
+    console.log('finish')
 }
 
 const showFailScreen = () => {

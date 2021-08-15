@@ -27,6 +27,8 @@
                 <img id="sky" src="assets/sky_day.jpg" />
                 <img id="face1" src="assets/m_face1.png" />
                 <img id="corona" src="assets/corona.png" />
+                <img id="check" src="assets/check.png" />
+                <audio id="music" src="assets/music.mp3" preload="auto"></audio>
             </a-assets>
 
 
@@ -77,12 +79,14 @@
                 <!-- <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity>
                 <a-grid color="green" width="30" height="30" rotation="-90 0 0"></a-grid>
                 <a-plane class="floor" color="green" width="30" height="30" position="0 0 -30" rotation="-90 0 0"></a-plane>
-
                 <a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane> -->
-                <a-box position="0 0 -20" width="10" height="10"></a-box>
+                
 
-                <a-sound src=></a-sound>
+                <a-box id="finish" position="0 0 -20" width="10" height="10" aabb-collider="objects: #player-ring"></a-box>
 
+                <a-entity position="-86 0 -180" sound="src: #music; autoplay: true; volume: 1; refDistance: 5"></a-entity>
+
+                <!-- Checkpoints -->
                 <a-plane id="checkpoint-area2" aabb-collider="objects: #player-ring" 
                     color="grey" width="100" height="10" position="0 0 -55" rotation="0 0 0"
                     visible="false"
@@ -108,8 +112,9 @@
                     visible="false"
                 ></a-plane>
 
-
+                <!-- Enemies -->
                 <a-entity id="enemies" position="-45 0 -60">
+
                 </a-entity>
 
                 <a-cylinder class="collisionTest" color="pink" radius=".08" height="1.5" position="0 -.2 -5">
@@ -127,6 +132,7 @@
 
                 <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
 
+                <!-- Screens -->
                 <a-plane id="fail-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
                     <a-entity
                         text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
