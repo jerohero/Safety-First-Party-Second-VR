@@ -15,13 +15,53 @@ const initFestival = () => {
 }
 
 const initCheckpoints = () => {
+    const areas = {
+        area1: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }},
+        area2: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -50 }},
+        area3: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -100 }},
+        area4: {width: 81, height: 51, amount: 100, position: { x: -85, y: 0, z: -47 }},
+        area5: {width: 81, height: 51, amount: 100, position: { x: -82, y: 0, z: -100 }}
+    }
+
     randomEnemiesForArea(1, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }})
 
     document.getElementById('checkpoint-area2').addEventListener('hitstart', () => {
         if (this.activeCheckpoint === 1) {
-            randomEnemiesForArea(2, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -50 }})
+            randomEnemiesForArea(2, areas.area2)
         } else {
-            randomEnemiesForArea(1, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }})
+            randomEnemiesForArea(1, areas.area1)
+        }
+    })
+
+    document.getElementById('checkpoint-area3').addEventListener('hitstart', () => {
+        if (this.activeCheckpoint === 2) {
+            randomEnemiesForArea(3, areas.area3)
+        } else {
+            randomEnemiesForArea(2, areas.area2)
+        }
+    })
+
+    document.getElementById('checkpoint-area4').addEventListener('hitstart', () => {
+        if (this.activeCheckpoint === 2) {
+            randomEnemiesForArea(4, areas.area4)
+        } else {
+            randomEnemiesForArea(2, areas.area2)
+        }
+    })
+
+    document.getElementById('checkpoint-area5').addEventListener('hitstart', () => {
+        if (this.activeCheckpoint === 4) {
+            randomEnemiesForArea(5, areas.area5)
+        } else {
+            randomEnemiesForArea(4, areas.area4)
+        }
+    })
+
+    document.getElementById('checkpoint-area3-5').addEventListener('hitstart', () => {
+        if (this.activeCheckpoint === 3) {
+            randomEnemiesForArea(5, areas.area5)
+        } else {
+            randomEnemiesForArea(3, areas.area3)
         }
     })
 }
