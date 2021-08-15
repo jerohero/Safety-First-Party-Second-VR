@@ -8,7 +8,7 @@ const initFestival = () => {
     this.exposure = 0
     this.MAX_EXPOSURE = 3
 
-    document.getElementsByClassName('collisionTest')[0].addEventListener('hitstart', hitPlayer)
+    document.getElementsByClassName('enemyTemplate')[0].addEventListener('hitstart', hitPlayer)
     document.getElementById('finish').addEventListener('hitstart', endReached)
 
     initCheckpoints()
@@ -148,7 +148,7 @@ const randomEnemiesForArea = (area, areaData) => {
     enemiesAreas.appendChild(newArea)
     
     const enemies = generateEnemiesList(areaData)
-    const test = document.getElementsByClassName('collisionTest')[0]
+    const test = document.getElementsByClassName('enemyTemplate')[0]
     const colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green']
 
     enemies.forEach((enemy) => {
