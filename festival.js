@@ -16,10 +16,10 @@ const initFestival = () => {
 
 const initCheckpoints = () => {
     const areas = {
-        area1: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }},
-        area2: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -50 }},
+        area1: {width: 81, height: 51, amount: 80, position: { x: 0, y: 0, z: 0 }},
+        area2: {width: 81, height: 51, amount: 90, position: { x: 0, y: 0, z: -50 }},
         area3: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -100 }},
-        area4: {width: 81, height: 51, amount: 100, position: { x: -85, y: 0, z: -47 }},
+        area4: {width: 81, height: 51, amount: 90, position: { x: -85, y: 0, z: -47 }},
         area5: {width: 81, height: 51, amount: 100, position: { x: -82, y: 0, z: -100 }}
     }
 

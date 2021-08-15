@@ -15,37 +15,15 @@
         <script src="onhover.js"></script>
     </head>
     <body>
-        <a-scene
-            fog="color: #DBF7FF; density: .2;"
-            inspector-plugin-recast
-            stats
-        >
+        <a-scene fog="color: #DBF7FF; density: .2;" inspector-plugin-recast stats>
 
             <a-assets>
-                <a-asset-item
-                    id="nav-mesh"
-                    src="assets/navmesh.gltf"
-                ></a-asset-item>
-                <a-asset-item
-                    id="festival"
-                    src="assets/festival.gltf"
-                ></a-asset-item>
-                <a-asset-item
-                    id="nav-mesh-room"
-                    src="assets/navmeshroom.glb"
-                ></a-asset-item>
-                <a-asset-item
-                    id="room"
-                    src="assets/room-with-roof.glb"
-                ></a-asset-item>
-                <a-asset-item
-                    id="green-arrow"
-                    src="assets/green-arrow.glb"
-                ></a-asset-item>
-                <a-asset-item
-                    id="red-arrow"
-                    src="assets/red-arrow.glb"
-                ></a-asset-item>
+                <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
+                <a-asset-item id="festival" src="assets/festival.gltf"></a-asset-item>
+                <a-asset-item id="nav-mesh-room" src="assets/navmeshroom.glb"></a-asset-item>
+                <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
+                <a-asset-item id="green-arrow" src="assets/green-arrow.glb"></a-asset-item>
+                <a-asset-item id="red-arrow" src="assets/red-arrow.glb"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
                 <img id="face1" src="assets/m_face1.png" />
                 <img id="corona" src="assets/corona.png" />
@@ -102,6 +80,8 @@
 
                 <a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane> -->
                 <a-box position="0 0 -20" width="10" height="10"></a-box>
+
+                <a-sound src=></a-sound>
 
                 <a-plane id="checkpoint-area2" aabb-collider="objects: #player-ring" 
                     color="grey" width="100" height="10" position="0 0 -55" rotation="0 0 0"
