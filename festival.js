@@ -68,12 +68,10 @@ const initCheckpoints = () => {
 }
 
 const restart = () => {
-    hideFailScreen()
+    hideScreens()
     document.getElementById('rig').setAttribute('position', '0 0 0')
     setPlayerExposure(0)
     randomEnemiesForArea(1, {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: 0 }})
-
-    console.log('restart')
 }
 
 const hitPlayer = () => {
@@ -87,7 +85,14 @@ const hitPlayer = () => {
 }
 
 const endReached = () => {
-    console.log('finish')
+    document.getElementById('win-screen').setAttribute('visible', 'true')
+    document.getElementById('enemies').setAttribute('visible', 'false')
+    document.getElementById('player-exposure').setAttribute('visible', 'false')
+    document.getElementById('restart-button').setAttribute('clickable', 'true')
+    document.getElementById('restart-button').addEventListener('click', (evt) => {
+        restart()
+    })
+    // todo disable movement
 }
 
 const showFailScreen = () => {
@@ -101,8 +106,9 @@ const showFailScreen = () => {
     // todo disable movement
 }
 
-const hideFailScreen = () => {
+const hideScreens = () => {
     document.getElementById('fail-screen').setAttribute('visible', 'false')
+    document.getElementById('win-screen').setAttribute('visible', 'false')
     document.getElementById('enemies').setAttribute('visible', 'true')
     document.getElementById('player-exposure').setAttribute('visible', 'true')
     document.getElementById('restart-button').removeAttribute('clickable')

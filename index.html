@@ -160,6 +160,37 @@
                     </a-plane>
                 </a-plane>
 
+                <a-plane id="win-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
+                    <!-- <a-torus color="white" arc="360" radius="2" rotation="-90 0 0" radius-tubular="2.5"></a-torus>
+                    <a-plane class="floor" color="white" width="5" height="5" rotation="-100 0 0" position="0 -1.2 0"></a-plane> -->
+                    
+                    <a-entity
+                        text="value: U heeft zich goed aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
+                        position="0 .5 .05"
+                    >
+                        <a-entity
+                            text="value: U heeft op een verantwoordige manier bier besteld in een evenement. Nu nog in het echt!; align: center; color: black; width: 2;"
+                            position="0 -.4 0"
+                        >
+                        </a-entity>
+                        <a-image
+                            src="#check"
+                            height=".4"
+                            width=".4"
+                            position="0 .5 0"
+                        >
+                        </a-image>
+                    </a-entity>
+
+                    <a-plane id="restart-button" onhoverbutton color="green" width="2" height=".4" position="0 -.5 .05">
+                        <a-entity
+                            text="value: Opnieuw spelen; align: center; color: white; width: 4;"
+                            position="0 0 0"
+                        ></a-entity>
+                    </a-plane>
+                </a-plane>
+
+
                 <a-entity
                     id="camera"
                     position="0 1.7 0"
