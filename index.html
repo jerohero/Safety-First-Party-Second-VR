@@ -20,6 +20,7 @@
             <a-assets>
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
                 <a-asset-item id="festival" src="assets/festival.gltf"></a-asset-item>
+                <a-asset-item id="disinfectant" src="assets/disinfectant.gltf"></a-asset-item>
                 <a-asset-item id="nav-mesh-room" src="assets/navmeshroom.glb"></a-asset-item>
                 <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
                 <a-asset-item id="green-arrow" src="assets/green-arrow.glb"></a-asset-item>
@@ -117,15 +118,15 @@
 
                 </a-entity>
 
-                <a-cylinder class="enemyTemplate" color="pink" radius=".08" height="1.5" position="0 -.2 -5">
+                <a-cylinder class="enemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 -.2 -5">
                     <a-sphere src="#face1" position="0 .9 0" radius=".3" rotation="0 -90 0"></a-sphere>
                     <a-ring radius-inner="0.9" radius-outer="1.05" rotation="-90 0 0" position="0 -.6 0" color="yellow">
                         <a-ring radius-inner="0.5" radius-outer="0.65" aabb-collider="objects: #player-ring" color="red"></a-ring>
                     </a-ring>
                 </a-cylinder>
 
-                <a-cylinder class="healTemplate" color="red" radius=".5" height="2" position="-2 -1 -5" aabb-collider="objects: #player-ring">
-                </a-cylinder>
+                <a-entity class="healTemplate" visible="false" gltf-model="#disinfectant" scale="7 7 7" aabb-collider="objects: #player-ring">
+                </a-entity>
             </a-entity>
 
 

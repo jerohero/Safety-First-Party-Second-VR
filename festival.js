@@ -171,6 +171,7 @@ const randomEnemiesForArea = (area, areaData) => {
         switch (spawnEl.type) {
             case this.ENEMY:
                 newEl = enemyTemplate.cloneNode(true)
+                newEl.setAttribute('visible', true)
                 newEl.setAttribute('position', { x: spawnEl.x, y: -.2, z: spawnEl.z })
                 newEl.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
                 newEl.addEventListener('hitstart', hitPlayer)
@@ -178,7 +179,8 @@ const randomEnemiesForArea = (area, areaData) => {
                 break
             case this.HEAL:
                 newEl = healTemplate.cloneNode(true)
-                newEl.setAttribute('position', { x: spawnEl.x, y: -1, z: spawnEl.z })
+                newEl.setAttribute('visible', true)
+                newEl.setAttribute('position', { x: spawnEl.x, y: -.5, z: spawnEl.z })
                 newEl.addEventListener('hitstart', pickupHeal)
 
                 break
