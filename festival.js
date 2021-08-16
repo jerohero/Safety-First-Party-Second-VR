@@ -7,6 +7,8 @@ AFRAME.registerComponent('festival', {
 const initFestival = () => {
     this.exposure = 0
     this.MAX_EXPOSURE = 3
+    this.HEAL = 'heal'
+    this.ENEMY = 'enemy'
 
     // todo remove
     document.getElementsByClassName('enemyTemplate')[0].addEventListener('hitstart', hitPlayer)
@@ -167,14 +169,14 @@ const randomEnemiesForArea = (area, areaData) => {
         let newEl
 
         switch (spawnEl.type) {
-            case 'enemy':
+            case this.ENEMY:
                 newEl = enemyTemplate.cloneNode(true)
                 newEl.setAttribute('position', { x: spawnEl.x, y: -.2, z: spawnEl.z })
                 newEl.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
                 newEl.addEventListener('hitstart', hitPlayer)
 
                 break
-            case 'heal':
+            case this.HEAL:
                 newEl = healTemplate.cloneNode(true)
                 newEl.setAttribute('position', { x: spawnEl.x, y: -1, z: spawnEl.z })
                 newEl.addEventListener('hitstart', pickupHeal)
@@ -199,7 +201,7 @@ const generateSpawnList = (areaData) => {
 
     while (enemies.length < maxEnemies && counter < protection) {
         enemy = {
-            type: 'enemy',
+            type: this.ENEMY,
             x: Math.floor(Math.random() * areaData.width),
             z: Math.floor(Math.random() * areaData.height),
             r: 10
@@ -222,8 +224,8 @@ const generateSpawnList = (areaData) => {
         counter++
     }
 
-    for (let i = 0; i < 4; i++) {
-        enemies[Math.floor(Math.random() * enemies.length)].type = 'heal';
+    for (let i = 0; i < 3; i++) {
+        enemies[Math.floor(Math.random() * enemies.length)].type = this.HEAL;
     }
 
     return enemies
