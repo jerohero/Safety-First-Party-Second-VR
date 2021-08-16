@@ -8,7 +8,10 @@ const initFestival = () => {
     this.exposure = 0
     this.MAX_EXPOSURE = 3
 
+    // todo remove
     document.getElementsByClassName('enemyTemplate')[0].addEventListener('hitstart', hitPlayer)
+    document.getElementsByClassName('healTemplate')[0].addEventListener('hitstart', pickupHeal)
+
     document.getElementById('finish').addEventListener('hitstart', endReached)
 
     initCheckpoints()
@@ -84,6 +87,14 @@ const hitPlayer = () => {
     }
 }
 
+const pickupHeal = (e) => {
+    if (this.exposure > 0) {
+        setPlayerExposure(this.exposure - 1)
+    }
+
+    e.target.remove()
+}
+
 const endReached = () => {
     document.getElementById('win-screen').setAttribute('visible', 'true')
     document.getElementById('enemies').setAttribute('visible', 'false')
@@ -147,21 +158,38 @@ const randomEnemiesForArea = (area, areaData) => {
     newArea.setAttribute('position', areaData.position)
     enemiesAreas.appendChild(newArea)
     
-    const enemies = generateEnemiesList(areaData)
-    const test = document.getElementsByClassName('enemyTemplate')[0]
+    const spawnElements = generateSpawnList(areaData)
+    const enemyTemplate = document.getElementsByClassName('enemyTemplate')[0]
+    const healTemplate = document.getElementsByClassName('healTemplate')[0]
     const colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green']
 
-    enemies.forEach((enemy) => {
-        const e = test.cloneNode(true)
-        e.setAttribute('position', { x: enemy.x, y: -.2, z: enemy.z })
-        e.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
-        e.addEventListener('hitstart', hitPlayer)
+    spawnElements.forEach((spawnEl) => {
+        let newEl
 
-        newArea.appendChild(e)
+        switch (spawnEl.type) {
+            case 'enemy':
+                newEl = enemyTemplate.cloneNode(true)
+                newEl.setAttribute('position', { x: spawnEl.x, y: -.2, z: spawnEl.z })
+                newEl.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
+                newEl.addEventListener('hitstart', hitPlayer)
+
+                break
+            case 'heal':
+                newEl = healTemplate.cloneNode(true)
+                newEl.setAttribute('position', { x: spawnEl.x, y: -1, z: spawnEl.z })
+                newEl.addEventListener('hitstart', pickupHeal)
+
+                break
+            default:
+
+                break
+        }
+
+        newArea.appendChild(newEl)
     })
 }
 
-const generateEnemiesList = (areaData) => {
+const generateSpawnList = (areaData) => {
     var enemies = [],
         enemy = {},
         overlapping = false,
@@ -171,6 +199,7 @@ const generateEnemiesList = (areaData) => {
 
     while (enemies.length < maxEnemies && counter < protection) {
         enemy = {
+            type: 'enemy',
             x: Math.floor(Math.random() * areaData.width),
             z: Math.floor(Math.random() * areaData.height),
             r: 10
@@ -191,6 +220,10 @@ const generateEnemiesList = (areaData) => {
         }
         
         counter++
+    }
+
+    for (let i = 0; i < 4; i++) {
+        enemies[Math.floor(Math.random() * enemies.length)].type = 'heal';
     }
 
     return enemies
