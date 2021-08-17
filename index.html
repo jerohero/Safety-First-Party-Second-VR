@@ -43,6 +43,7 @@
             <!-- Scenes -->
             <a-entity room id="room-scene">
                 <a-sky src="#sky"></a-sky>
+                <a-entity light="type: ambient; color: #CCC"></a-entity>
 
                 <a-entity
                     gltf-model="#nav-mesh-room"
@@ -76,6 +77,8 @@
                     material="opacity: 0.0; transparent: true"
                     rotation="0 89.000 0"
                 ></a-entity>
+
+                <a-box id="room-door" position="0 .5 0" aabb-collider="objects: #player-ring"></a-box>
             </a-entity>
 
 
@@ -100,7 +103,7 @@
                 ></a-entity>
 
                 <!-- Sounds -->
-                <a-entity sound="src: #music; autoplay: true; volume: 1; refDistance: 10; loop: true" position="-86 0 -180"></a-entity>
+                <a-entity id="festival-music" sound="src: #music; volume: 1; refDistance: 10; loop: true" position="-86 0 -180"></a-entity>
                 <a-entity id="cough-sound" sound="src: #cough; volume: .4; positional: false"></a-entity>
                 <a-entity id="win-sound" sound="src: #victory; volume: .8; positional: false"></a-entity>
                 <a-entity id="fail-sound" sound="src: #defeat; volume: .5; positional: false"></a-entity>
@@ -153,10 +156,10 @@
 
 
             <!-- Player -->
-            <a-entity id="rig" movement-controls="speed: .6; constrainToNavMesh: true" onclicks>
+            <a-entity id="rig" movement-controls="speed: .3; constrainToNavMesh: true" onclicks>
                 <a-entity light="type: point"></a-entity>
 
-                <a-ring id="player-ring" radius-inner=".6" radius-outer=".75" position="0 .2 0" rotation="-90 0 0" color="crimson">
+                <a-ring id="player-ring" opacity="0" radius-inner=".6" radius-outer=".75" position="0 .2 0" rotation="-90 0 0" color="crimson">
                     <a-cylinder visible="false" height="2" radius=.75 rotation="90 0 0"></a-cylinder>
                 </a-ring>
 
@@ -196,7 +199,7 @@
                 </a-entity>
 
                 <!-- Screens -->
-                <a-plane id="fail-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
+                <a-plane id="fail-screen" visible="false" color="white" width="5" height="3"  position="0 1.25 2" rotation="-10 180 0">
                     <a-entity
                         text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
                         position="0 .5 .05"
@@ -223,7 +226,7 @@
                     </a-plane>
                 </a-plane>
 
-                <a-plane id="win-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">                    
+                <a-plane id="win-screen" visible="false" color="white" width="5" height="3" position="0 1.25 2" rotation="-10 180 0">                    
                     <a-entity
                         text="value: U heeft zich goed aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
                         position="0 .5 .05"

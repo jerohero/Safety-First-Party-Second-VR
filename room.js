@@ -29,10 +29,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 AFRAME.registerComponent("room", {
     init: () => {
-        initRoom();
+        initRoom()
     },
     remove: () => {
-        console.log("REMOVE ROOM");
+        removeRoom()
     },
 });
 
@@ -46,7 +46,14 @@ const initRoom = () => {
     rig.setAttribute("rotation", { x: 0, y: 90, z: 0 });
     // rig.removeAttribute("movement-controls");
 
-    rig.setAttribute("position", { x: 0, y: 0, z: 0 });
+    rig.setAttribute("position", { x: -5.35, y: 0, z: 2.8 });
     camera.setAttribute("position", { x: 0, y: 1, z: 0 });
     cursor.setAttribute("position", this.roomCursorPos);
-};
+}
+
+const removeRoom = () => {
+    rig.setAttribute("rotation", { x: 0, y: 180, z: 0 })
+    rig.setAttribute("position", { x: 0, y: 0, z: 0 })
+    camera.setAttribute("position", { x: 0, y: 1.7, z: 0 })
+    camera.setAttribute("rotation", { x: 0, y: 0, z: 0 })
+}

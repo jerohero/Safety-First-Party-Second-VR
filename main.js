@@ -1,7 +1,7 @@
 let rig
 let scenes
 
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", (event) => {
     rig = document.getElementById('rig')
 
     scenes = {
@@ -9,7 +9,12 @@ window.onload = () => {
         festival: document.getElementById('festival-scene')
     }
 
-    // toIntroScene()
+    toIntroScene()
+    document.getElementById('room-door').addEventListener('hitstart', doorInteraction)
+    // toFestivalScene()
+})
+
+const doorInteraction = () => {
     toFestivalScene()
 }
 
@@ -22,4 +27,7 @@ const toFestivalScene = () => {
     scenes.room.removeAttribute('room')
     scenes.room.setAttribute('visible', 'false')
     scenes.festival.setAttribute('visible', 'true')
+
+    document.getElementById('player-ring').setAttribute('opacity', '1')
+    document.getElementById('festival-music').components.sound.playSound()
 }
