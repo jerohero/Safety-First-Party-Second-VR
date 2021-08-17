@@ -88,7 +88,7 @@
                 <a-entity gltf-model="#festival" scale="20 20 20" position="-15 -1.2 -110" rotation="0 -60 0"></a-entity>
 
                 <a-entity id="festival-navmesh" nav-mesh visible="false" gltf-model="#nav-mesh-festival"
-                    position="-15 0 -110" rotation="0 -90 0" scale="20 20 20"
+                    position="-15 -2.05 -110" rotation="0 -90 0" scale="20 20 20"
                 ></a-entity>
 
                 <!-- Finish -->
@@ -156,7 +156,9 @@
             <a-entity id="rig" movement-controls="speed: .6; constrainToNavMesh: true" onclicks>
                 <a-entity light="type: point"></a-entity>
 
-                <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
+                <a-ring id="player-ring" radius-inner=".6" radius-outer=".75" position="0 .2 0" rotation="-90 0 0" color="crimson">
+                    <a-cylinder visible="false" height="2" radius=.75 rotation="90 0 0"></a-cylinder>
+                </a-ring>
 
                 <a-entity
                     id="camera"
