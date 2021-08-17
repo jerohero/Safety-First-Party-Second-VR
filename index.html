@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>IKMEDT</title>
+        <title>Safety First, Party Second</title>
         <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
@@ -132,6 +132,7 @@
                 <a-entity id="enemies" position="-45 0 -60">
                 </a-entity>
 
+                <!-- Templates -->
                 <a-cylinder class="maleEnemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 10 -5">
                     <a-sphere src="#face1" position="0 .9 0" radius=".3" rotation="0 -90 0"></a-sphere>
                     <a-ring radius-inner="0.9" radius-outer="1.05" rotation="-90 0 0" position="0 -.6 0" color="yellow">
@@ -156,65 +157,6 @@
                 <a-entity light="type: point"></a-entity>
 
                 <a-ring id="player-ring" radius-inner="0.6" radius-outer="0.75" position="0 .2 0" rotation="-90 0 0" color="crimson"></a-ring>
-
-                <!-- Screens -->
-                <a-plane id="fail-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
-                    <a-entity
-                        text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
-                        position="0 .5 .05"
-                    >
-                        <a-entity
-                            text="value: Probeer 1.5 meter afstand te houden van anderen\nom uw kans op besmetting te verlagen.; align: center; color: black; width: 2;"
-                            position="0 -.4 0"
-                        >
-                        </a-entity>
-                        <a-image
-                            src="#corona"
-                            height=".5"
-                            width=".5"
-                            position="0 .5 -.04"
-                        >
-                        </a-image>
-                    </a-entity>
-
-                    <a-plane id="restart-button" onhoverbutton color="red" width="2" height=".4" position="0 -.5 .05">
-                        <a-entity
-                            text="value: Opnieuw proberen; align: center; color: white; width: 4;"
-                            position="0 0 0"
-                        ></a-entity>
-                    </a-plane>
-                </a-plane>
-
-                <a-plane id="win-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
-                    <!-- <a-torus color="white" arc="360" radius="2" rotation="-90 0 0" radius-tubular="2.5"></a-torus>
-                    <a-plane class="floor" color="white" width="5" height="5" rotation="-100 0 0" position="0 -1.2 0"></a-plane> -->
-                    
-                    <a-entity
-                        text="value: U heeft zich goed aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
-                        position="0 .5 .05"
-                    >
-                        <a-entity
-                            text="value: U heeft op een verantwoordige manier bier besteld in een evenement. Nu nog in het echt!; align: center; color: black; width: 2;"
-                            position="0 -.4 0"
-                        >
-                        </a-entity>
-                        <a-image
-                            src="#check"
-                            height=".4"
-                            width=".4"
-                            position="0 .5 0"
-                        >
-                        </a-image>
-                    </a-entity>
-
-                    <a-plane id="restart-button" onhoverbutton color="green" width="2" height=".4" position="0 -.5 .05">
-                        <a-entity
-                            text="value: Opnieuw spelen; align: center; color: white; width: 4;"
-                            position="0 0 0"
-                        ></a-entity>
-                    </a-plane>
-                </a-plane>
-
 
                 <a-entity
                     id="camera"
@@ -250,7 +192,62 @@
                     </a-cursor>
 
                 </a-entity>
-            </a-cylinder>
+
+                <!-- Screens -->
+                <a-plane id="fail-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">
+                    <a-entity
+                        text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
+                        position="0 .5 .05"
+                    >
+                        <a-entity
+                            text="value: Probeer 1.5 meter afstand te houden van anderen\nom uw kans op besmetting te verlagen.; align: center; color: black; width: 2;"
+                            position="0 -.4 0"
+                        >
+                        </a-entity>
+                        <a-image
+                            src="#corona"
+                            height=".5"
+                            width=".5"
+                            position="0 .5 -.04"
+                        >
+                        </a-image>
+                    </a-entity>
+
+                    <a-plane id="restart-button" onhoverbutton color="red" width="2" height=".4" position="0 -.5 .05">
+                        <a-entity
+                            text="value: Opnieuw proberen; align: center; color: white; width: 4;"
+                            position="0 0 0"
+                        ></a-entity>
+                    </a-plane>
+                </a-plane>
+
+                <a-plane id="win-screen" visible="false" color="white" width="5" height="3" position="0 1.25 -2" rotation="-10 0 0">                    
+                    <a-entity
+                        text="value: U heeft zich goed aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
+                        position="0 .5 .05"
+                    >
+                        <a-entity
+                            text="value: U heeft op een verantwoordige manier bier besteld in een evenement. Nu nog in het echt!; align: center; color: black; width: 2;"
+                            position="0 -.4 0"
+                        >
+                        </a-entity>
+                        <a-image
+                            src="#check"
+                            height=".4"
+                            width=".4"
+                            position="0 .5 0"
+                        >
+                        </a-image>
+                    </a-entity>
+
+                    <a-plane id="restart-button" onhoverbutton color="green" width="2" height=".4" position="0 -.5 .05">
+                        <a-entity
+                            text="value: Opnieuw spelen; align: center; color: white; width: 4;"
+                            position="0 0 0"
+                        ></a-entity>
+                    </a-plane>
+                </a-plane>
+            </a-entity>
 
         </a-scene>
     </body>
