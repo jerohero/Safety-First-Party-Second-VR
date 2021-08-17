@@ -9,8 +9,10 @@ const initFestival = () => {
     this.MAX_EXPOSURE = 3
     this.HEAL = 'heal'
     this.ENEMY = 'enemy'
+    this.MALE = 'male'
+    this.FEMALE = 'female'
 
-    document.getElementsByClassName('enemyTemplate')[0].addEventListener('hitstart', hitPlayer)
+    document.getElementsByClassName('maleEnemyTemplate')[0].addEventListener('hitstart', hitPlayer)
     document.getElementsByClassName('healTemplate')[0].addEventListener('hitstart', pickupHeal)
 
     document.getElementById('finish').addEventListener('hitstart', endReached)
@@ -20,10 +22,10 @@ const initFestival = () => {
 
 const initCheckpoints = () => {
     const areas = {
-        area1: {width: 81, height: 51, amount: 80, position: { x: 0, y: 0, z: 0 }},
-        area2: {width: 81, height: 51, amount: 90, position: { x: 0, y: 0, z: -50 }},
+        area1: {width: 81, height: 51, amount: 50, position: { x: 0, y: 0, z: 0 }},
+        area2: {width: 81, height: 51, amount: 80, position: { x: 0, y: 0, z: -50 }},
         area3: {width: 81, height: 51, amount: 100, position: { x: 0, y: 0, z: -100 }},
-        area4: {width: 81, height: 51, amount: 90, position: { x: -85, y: 0, z: -47 }},
+        area4: {width: 81, height: 51, amount: 80, position: { x: -85, y: 0, z: -47 }},
         area5: {width: 81, height: 51, amount: 100, position: { x: -82, y: 0, z: -100 }}
     }
 
@@ -128,7 +130,8 @@ const randomEnemiesForArea = (area, areaData) => {
     enemiesAreas.appendChild(newArea)
     
     const spawnElements = generateSpawnList(areaData)
-    const enemyTemplate = document.getElementsByClassName('enemyTemplate')[0]
+    const maleEnemyTemplate = document.getElementsByClassName('maleEnemyTemplate')[0]
+    const femaleEnemyTemplate = document.getElementsByClassName('femaleEnemyTemplate')[0]
     const healTemplate = document.getElementsByClassName('healTemplate')[0]
     const colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green']
 
@@ -137,7 +140,9 @@ const randomEnemiesForArea = (area, areaData) => {
 
         switch (spawnEl.type) {
             case this.ENEMY:
-                newEl = enemyTemplate.cloneNode(true)
+                newEl = spawnEl.gender === this.MALE
+                    ? maleEnemyTemplate.cloneNode(true)
+                    : femaleEnemyTemplate.cloneNode(true)
                 newEl.setAttribute('visible', true)
                 newEl.setAttribute('position', { x: spawnEl.x, y: -.2, z: spawnEl.z })
                 newEl.setAttribute('color', colors[Math.floor(Math.random() * colors.length)])
@@ -171,6 +176,7 @@ const generateSpawnList = (areaData) => {
     while (enemies.length < maxEnemies && counter < protection) {
         enemy = {
             type: this.ENEMY,
+            gender: Math.round(Math.random()) === 0 ? this.MALE : this.FEMALE,
             x: Math.floor(Math.random() * areaData.width),
             z: Math.floor(Math.random() * areaData.height),
             r: 10

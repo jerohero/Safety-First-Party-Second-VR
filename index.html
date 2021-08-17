@@ -28,7 +28,8 @@
                 <a-asset-item id="green-arrow" src="assets/green-arrow.glb"></a-asset-item>
                 <a-asset-item id="red-arrow" src="assets/red-arrow.glb"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
-                <img id="face1" src="assets/m_face1.png" />
+                <img id="face1" src="assets/m_face1.jpg" />
+                <img id="face2" src="assets/f_face1.jpg" />
                 <img id="corona" src="assets/corona.png" />
                 <img id="check" src="assets/check.png" />
                 <audio id="music" src="assets/music.mp3" preload="auto"></audio>
@@ -131,8 +132,14 @@
                 <a-entity id="enemies" position="-45 0 -60">
                 </a-entity>
 
-                <a-cylinder class="enemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 10 -5">
+                <a-cylinder class="maleEnemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 10 -5">
                     <a-sphere src="#face1" position="0 .9 0" radius=".3" rotation="0 -90 0"></a-sphere>
+                    <a-ring radius-inner="0.9" radius-outer="1.05" rotation="-90 0 0" position="0 -.6 0" color="yellow">
+                        <a-ring radius-inner="0.5" radius-outer="0.65" aabb-collider="objects: #player-ring" color="red"></a-ring>
+                    </a-ring>
+                </a-cylinder>
+                <a-cylinder class="femaleEnemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 10 -5">
+                    <a-sphere src="#face2" position="0 .9 0" radius=".3" rotation="0 -90 0"></a-sphere>
                     <a-ring radius-inner="0.9" radius-outer="1.05" rotation="-90 0 0" position="0 -.6 0" color="yellow">
                         <a-ring radius-inner="0.5" radius-outer="0.65" aabb-collider="objects: #player-ring" color="red"></a-ring>
                     </a-ring>
