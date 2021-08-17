@@ -32,6 +32,10 @@
                 <img id="corona" src="assets/corona.png" />
                 <img id="check" src="assets/check.png" />
                 <audio id="music" src="assets/music.mp3" preload="auto"></audio>
+                <audio id="cough" src="assets/cough.wav" preload="auto"></audio>
+                <audio id="victory" src="assets/victory.wav" preload="auto"></audio>
+                <audio id="defeat" src="assets/defeat.wav" preload="auto"></audio>
+                <audio id="heal" src="assets/heal.wav" preload="auto"></audio>
             </a-assets>
 
 
@@ -73,28 +77,33 @@
                 ></a-entity>
             </a-entity>
 
+
             <a-entity festival id="festival-scene" position="0 1 0">
+                <!-- Environment -->
                 <a-sky src="#sky"></a-sky>
-                <a-entity gltf-model="#festival" scale="20 20 20" position="-15 -1.2 -110" rotation="0 -60 0"></a-entity>
                 <a-entity light="intensity: 3;" position="40 110 22"></a-entity>
                 <a-entity light="intensity: 2; type: point" position="-55 120 -235"></a-entity>
 
-                <a-entity
-                    id="festival-navmesh"
-                    nav-mesh
-                    visible="false"
-                    gltf-model="#nav-mesh-festival"
-                    position="-15 -2.1 -110"
-                    rotation="0 -90 0"
-                    scale="20 20 20"
+                <a-entity gltf-model="#festival" scale="20 20 20" position="-15 -1.2 -110" rotation="0 -60 0"></a-entity>
+
+                <a-entity id="festival-navmesh" nav-mesh visible="false" gltf-model="#nav-mesh-festival"
+                    position="-15 0 -110" rotation="0 -90 0" scale="20 20 20"
                 ></a-entity>
 
+                <!-- Finish -->
                 <a-entity id="finish-arrow" scale="50 50 50" rotation="0 85 180" position="-109.5 71.5 -127" gltf-model="#green-arrow" 
                     animation="property: position; to: -109.5 70 -127; loop: true; dur: 1000; easing: easeInOutQuad; dir: alternate"
                 ></a-entity>
-                <a-entity id="finish" gltf-model="#beertent" position="-109 0 -126" rotation="0 -4.9 0" scale=".8 .8 .8" aabb-collider="objects: #player-ring"></a-entity>
+                <a-entity id="finish" gltf-model="#beertent" position="-109 0 -126" rotation="0 -4.9 0" scale=".8 .8 .8" 
+                    aabb-collider="objects: #player-ring"
+                ></a-entity>
 
-                <a-entity position="-86 0 -180" sound="src: #music; autoplay: true; volume: 1; refDistance: 5; loop: true"></a-entity>
+                <!-- Sounds -->
+                <a-entity sound="src: #music; autoplay: true; volume: 1; refDistance: 10; loop: true" position="-86 0 -180"></a-entity>
+                <a-entity id="cough-sound" sound="src: #cough; volume: .4; positional: false"></a-entity>
+                <a-entity id="win-sound" sound="src: #victory; volume: .8; positional: false"></a-entity>
+                <a-entity id="fail-sound" sound="src: #defeat; volume: .5; positional: false"></a-entity>
+                <a-entity id="heal-sound" sound="src: #heal; volume: .5; positional: false"></a-entity>
 
                 <!-- Checkpoints -->
                 <a-plane id="checkpoint-area2" aabb-collider="objects: #player-ring" 
@@ -106,7 +115,7 @@
                     visible="false"
                 ></a-plane>
                 <a-plane id="checkpoint-area4" aabb-collider="objects: #player-ring" 
-                    color="grey" width="50" height="10" position="-48.9 0 -80.8" rotation="0 90 0"
+                    color="grey" width="50" height="10" position="-52 0 -80.8" rotation="0 90 0"
                     visible="false"
                 ></a-plane>
                 <a-plane id="checkpoint-area5" aabb-collider="objects: #player-ring" 
@@ -120,17 +129,17 @@
 
                 <!-- Enemies -->
                 <a-entity id="enemies" position="-45 0 -60">
-
                 </a-entity>
 
-                <a-cylinder class="enemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 -.2 -5">
+                <a-cylinder class="enemyTemplate" visible="false" color="pink" radius=".08" height="1.5" position="0 10 -5">
                     <a-sphere src="#face1" position="0 .9 0" radius=".3" rotation="0 -90 0"></a-sphere>
                     <a-ring radius-inner="0.9" radius-outer="1.05" rotation="-90 0 0" position="0 -.6 0" color="yellow">
                         <a-ring radius-inner="0.5" radius-outer="0.65" aabb-collider="objects: #player-ring" color="red"></a-ring>
                     </a-ring>
                 </a-cylinder>
 
-                <a-entity class="healTemplate" visible="false" gltf-model="#disinfectant" scale="7 7 7" aabb-collider="objects: #player-ring">
+                <a-entity class="healTemplate" position="0 10 0" visible="false" gltf-model="#disinfectant" scale="7 7 7"
+                    aabb-collider="objects: #player-ring">
                 </a-entity>
             </a-entity>
 

@@ -10,14 +10,12 @@ const initFestival = () => {
     this.HEAL = 'heal'
     this.ENEMY = 'enemy'
 
-    // todo remove
     document.getElementsByClassName('enemyTemplate')[0].addEventListener('hitstart', hitPlayer)
     document.getElementsByClassName('healTemplate')[0].addEventListener('hitstart', pickupHeal)
 
     document.getElementById('finish').addEventListener('hitstart', endReached)
 
     initCheckpoints()
-    // randomEnemiesForArea(2, {x: 81, z: 51, amount: 200})
 }
 
 const initCheckpoints = () => {
@@ -38,7 +36,6 @@ const initCheckpoints = () => {
             randomEnemiesForArea(1, areas.area1)
         }
     })
-
     document.getElementById('checkpoint-area3').addEventListener('hitstart', () => {
         if (this.activeCheckpoint === 2) {
             randomEnemiesForArea(3, areas.area3)
@@ -46,7 +43,6 @@ const initCheckpoints = () => {
             randomEnemiesForArea(2, areas.area2)
         }
     })
-
     document.getElementById('checkpoint-area4').addEventListener('hitstart', () => {
         if (this.activeCheckpoint === 2) {
             randomEnemiesForArea(4, areas.area4)
@@ -54,7 +50,6 @@ const initCheckpoints = () => {
             randomEnemiesForArea(2, areas.area2)
         }
     })
-
     document.getElementById('checkpoint-area5').addEventListener('hitstart', () => {
         if (this.activeCheckpoint === 4) {
             randomEnemiesForArea(5, areas.area5)
@@ -62,7 +57,6 @@ const initCheckpoints = () => {
             randomEnemiesForArea(4, areas.area4)
         }
     })
-
     document.getElementById('checkpoint-area3-5').addEventListener('hitstart', () => {
         if (this.activeCheckpoint === 3) {
             randomEnemiesForArea(5, areas.area5)
@@ -81,6 +75,7 @@ const restart = () => {
 
 const hitPlayer = () => {
     setPlayerExposure(this.exposure + 1)
+    document.getElementById('cough-sound').components.sound.playSound()
 
     if (this.exposure >= this.MAX_EXPOSURE) {
         showFailScreen()
@@ -90,41 +85,13 @@ const hitPlayer = () => {
 }
 
 const pickupHeal = (e) => {
+    document.getElementById('heal-sound').components.sound.playSound()
+
     if (this.exposure > 0) {
         setPlayerExposure(this.exposure - 1)
     }
 
     e.target.remove()
-}
-
-const endReached = () => {
-    document.getElementById('win-screen').setAttribute('visible', 'true')
-    document.getElementById('enemies').setAttribute('visible', 'false')
-    document.getElementById('player-exposure').setAttribute('visible', 'false')
-    document.getElementById('restart-button').setAttribute('clickable', 'true')
-    document.getElementById('restart-button').addEventListener('click', (evt) => {
-        restart()
-    })
-    // todo disable movement
-}
-
-const showFailScreen = () => {
-    document.getElementById('fail-screen').setAttribute('visible', 'true')
-    document.getElementById('enemies').setAttribute('visible', 'false')
-    document.getElementById('player-exposure').setAttribute('visible', 'false')
-    document.getElementById('restart-button').setAttribute('clickable', 'true')
-    document.getElementById('restart-button').addEventListener('click', (evt) => {
-        restart()
-    })
-    // todo disable movement
-}
-
-const hideScreens = () => {
-    document.getElementById('fail-screen').setAttribute('visible', 'false')
-    document.getElementById('win-screen').setAttribute('visible', 'false')
-    document.getElementById('enemies').setAttribute('visible', 'true')
-    document.getElementById('player-exposure').setAttribute('visible', 'true')
-    document.getElementById('restart-button').removeAttribute('clickable')
 }
 
 const setPlayerExposure = (newExposure) => {
@@ -231,4 +198,38 @@ const generateSpawnList = (areaData) => {
     }
 
     return enemies
+}
+
+const endReached = () => {
+    document.getElementById('win-sound').components.sound.playSound()
+
+    document.getElementById('win-screen').setAttribute('visible', 'true')
+    document.getElementById('enemies').setAttribute('visible', 'false')
+    document.getElementById('player-exposure').setAttribute('visible', 'false')
+    document.getElementById('restart-button').setAttribute('clickable', 'true')
+    document.getElementById('restart-button').addEventListener('click', () => {
+        restart()
+    })
+    // todo disable movement
+}
+
+const showFailScreen = () => {
+    document.getElementById('fail-sound').components.sound.playSound()
+
+    document.getElementById('fail-screen').setAttribute('visible', 'true')
+    document.getElementById('enemies').setAttribute('visible', 'false')
+    document.getElementById('player-exposure').setAttribute('visible', 'false')
+    document.getElementById('restart-button').setAttribute('clickable', 'true')
+    document.getElementById('restart-button').addEventListener('click', () => {
+        restart()
+    })
+    // todo disable movement
+}
+
+const hideScreens = () => {
+    document.getElementById('fail-screen').setAttribute('visible', 'false')
+    document.getElementById('win-screen').setAttribute('visible', 'false')
+    document.getElementById('enemies').setAttribute('visible', 'true')
+    document.getElementById('player-exposure').setAttribute('visible', 'true')
+    document.getElementById('restart-button').removeAttribute('clickable')
 }
