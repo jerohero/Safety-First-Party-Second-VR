@@ -23,6 +23,7 @@
                 <a-asset-item id="disinfectant" src="assets/disinfectant.gltf"></a-asset-item>
                 <a-asset-item id="beertent" src="assets/beertent.gltf"></a-asset-item>
                 <a-asset-item id="nav-mesh-room" src="assets/navmeshroom.glb"></a-asset-item>
+                <a-asset-item id="nav-mesh-festival" src="assets/festival_navmesh.gltf"></a-asset-item>
                 <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
                 <a-asset-item id="green-arrow" src="assets/green-arrow.glb"></a-asset-item>
                 <a-asset-item id="red-arrow" src="assets/red-arrow.glb"></a-asset-item>
@@ -40,8 +41,8 @@
 
                 <a-entity
                     gltf-model="#nav-mesh-room"
-                    position="-2.874 0 2.078"
                     nav-mesh
+                    position="-2.874 0 2.078"
                 ></a-entity>
 
                 <a-entity gltf-model="#room"></a-entity>
@@ -78,8 +79,19 @@
                 <a-entity light="intensity: 3;" position="40 110 22"></a-entity>
                 <a-entity light="intensity: 2; type: point" position="-55 120 -235"></a-entity>
 
-                <!-- <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity> -->
+                <a-entity
+                    id="festival-navmesh"
+                    nav-mesh
+                    visible="false"
+                    gltf-model="#nav-mesh-festival"
+                    position="-15 -2.1 -110"
+                    rotation="0 -90 0"
+                    scale="20 20 20"
+                ></a-entity>
 
+                <a-entity id="finish-arrow" scale="50 50 50" rotation="0 85 180" position="-109.5 71.5 -127" gltf-model="#green-arrow" 
+                    animation="property: position; to: -109.5 70 -127; loop: true; dur: 1000; easing: easeInOutQuad; dir: alternate"
+                ></a-entity>
                 <a-entity id="finish" gltf-model="#beertent" position="-109 0 -126" rotation="0 -4.9 0" scale=".8 .8 .8" aabb-collider="objects: #player-ring"></a-entity>
 
                 <a-entity position="-86 0 -180" sound="src: #music; autoplay: true; volume: 1; refDistance: 5; loop: true"></a-entity>
@@ -89,22 +101,18 @@
                     color="grey" width="100" height="10" position="0 0 -55" rotation="0 0 0"
                     visible="false"
                 ></a-plane>
-
                 <a-plane id="checkpoint-area3" aabb-collider="objects: #player-ring" 
                     color="grey" width="100" height="10" position="1.5 0 -106" rotation="0 0 0"
                     visible="false"
                 ></a-plane>
-
                 <a-plane id="checkpoint-area4" aabb-collider="objects: #player-ring" 
-                    color="grey" width="60" height="10" position="-48 0 -76" rotation="0 90 0"
+                    color="grey" width="50" height="10" position="-48.9 0 -80.8" rotation="0 90 0"
                     visible="false"
                 ></a-plane>
-
                 <a-plane id="checkpoint-area5" aabb-collider="objects: #player-ring" 
                     color="grey" width="100" height="10" position="-98 0 -106" rotation="0 0 0"
                     visible="false"
                 ></a-plane>
-
                 <a-plane id="checkpoint-area3-5" aabb-collider="objects: #player-ring" 
                     color="grey" width="100" height="10" position="-48 0 -155" rotation="0 90 0"
                     visible="false"
