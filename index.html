@@ -21,6 +21,7 @@
                 <a-asset-item id="nav-mesh" src="assets/navmesh.gltf"></a-asset-item>
                 <a-asset-item id="festival" src="assets/festival.gltf"></a-asset-item>
                 <a-asset-item id="disinfectant" src="assets/disinfectant.gltf"></a-asset-item>
+                <a-asset-item id="beertent" src="assets/beertent.gltf"></a-asset-item>
                 <a-asset-item id="nav-mesh-room" src="assets/navmeshroom.glb"></a-asset-item>
                 <a-asset-item id="room" src="assets/room-with-roof.glb"></a-asset-item>
                 <a-asset-item id="green-arrow" src="assets/green-arrow.glb"></a-asset-item>
@@ -83,9 +84,9 @@
                 <a-plane class="wall" color="grey" width="10" height="10" position="0 5 -20" rotation="0 0 0"></a-plane> -->
                 
 
-                <a-box id="finish" position="0 0 -20" width="10" height="10" aabb-collider="objects: #player-ring"></a-box>
+                <a-entity id="finish" gltf-model="#beertent" position="-109 0 -126" rotation="0 -4.9 0" scale=".8 .8 .8" aabb-collider="objects: #player-ring"></a-entity>
 
-                <a-entity position="-86 0 -180" sound="src: #music; autoplay: true; volume: 1; refDistance: 5"></a-entity>
+                <a-entity position="-86 0 -180" sound="src: #music; autoplay: true; volume: 1; refDistance: 5; loop: true"></a-entity>
 
                 <!-- Checkpoints -->
                 <a-plane id="checkpoint-area2" aabb-collider="objects: #player-ring" 
