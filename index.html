@@ -58,6 +58,7 @@
                     id="beertent"
                     src="assets/beertent.gltf"
                 ></a-asset-item>
+                <a-asset-item id="mask" src="assets/mask.glb"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
                 <img id="face1" src="assets/m_face1.jpg" />
                 <img id="face2" src="assets/f_face1.jpg" />
@@ -91,6 +92,14 @@
                     nav-mesh
                 ></a-entity>
 
+                <a-entity
+                    id="mask-model"
+                    gltf-model="#mask"
+                    position="-1.809 0.2 3.135"
+                    scale="0.5 0.5 0.5"
+                    aabb-collider="objects: #player-ring"
+                ></a-entity>
+
                 <a-entity gltf-model="#room"></a-entity>
                 <a-entity
                     id="greenArrow"
@@ -121,7 +130,7 @@
                 <a-box
                     id="room-door"
                     aabb-collider="objects: #player-ring"
-                    position="-0.007 0.500 1.029"
+                    position="3.766 0 0"
                     scale="0.1 1.080 0.5"
                 ></a-box>
             </a-entity>

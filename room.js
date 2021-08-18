@@ -8,8 +8,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
         "Het doel bij het festival is uiteindelijk jezelf zo veilig mogelijk te verplaatsen naar de biertent.\n\n Wanneer je dit hebt gedaan heb je het level dus gehaald en komt de applicatie ook tot een einde. Je weet dan goed hoe je je moet houden aan de coronaregels tijdens een echte festival.",
         "Dit is het einde van de tutorial, om te beginnen kan je over de groene pijl zweven.\n\n Vergeet ook niet om je mondkapje mee te nemen uit je kamer voordat je naar de festival gaat...",
     ];
+
     const textPlane = document.getElementById("textPlane");
     textPlane.setAttribute("text", `value: ${text[index]}`);
+
+    const pickupMask = (e) => {
+        document
+            .getElementById("room-door")
+            .setAttribute("position", { x: -0.007, y: 0.5, z: 1.029 });
+        // position = "-0.007 0.500 1.029";
+        e.target.remove();
+    };
+
     document
         .getElementById("greenArrow")
         .addEventListener("click", function (evt) {
@@ -32,9 +42,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
             } else {
                 index -= 1;
                 textPlane.setAttribute("text", `value: ${text[index]}`);
-                console.log("redklik XD");
             }
         });
+
+    document
+        .getElementById("mask-model")
+        .addEventListener("hitstart", pickupMask);
 });
 
 AFRAME.registerComponent("room", {
