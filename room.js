@@ -7,8 +7,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         .getElementById("greenArrow")
         .addEventListener("click", function (evt) {
             if (index == text.length - 1) {
-                // Add after tutorial things here like picking up facemask
-                console.log("the end");
+                let rig = document.getElementById("rig");
+                rig.setAttribute("position", { x: -5.241, y: -0.1, z: 1.1 });
+                rig.setAttribute("rotation", { x: 0, y: -90, z: 0 });
+                rig.setAttribute("movement-controls", "speed: 0.001");
+                rig.setAttribute("movement", "");
             } else {
                 index += 1;
                 textPlane.setAttribute("text", `value: ${text[index]}`);
@@ -43,10 +46,11 @@ const initRoom = () => {
     let camera = document.getElementById("camera");
     let rig = document.getElementById("rig");
     let cursor = document.getElementById("cursor");
-    rig.setAttribute("rotation", { x: 0, y: -90, z: 0 });
-    // rig.removeAttribute("movement-controls");
-    // rig.setAttribute("scale", { x: 0.33, y: 1, z: 1 });
-    rig.setAttribute("position", { x: -5.241, y: -0.1, z: 1.1 });
+    rig.setAttribute("rotation", { x: 0, y: 90, z: 0 });
+    rig.setAttribute("movement-controls", "speed: 0");
+    rig.setAttribute("position", { x: -5.35, y: -0.1, z: 2.8 });
+    // rig.setAttribute("position", { x: -5.241, y: -0.1, z: 1.1 });
+
     camera.setAttribute("position", { x: 0, y: 1, z: 0 });
     cursor.setAttribute("position", this.roomCursorPos);
 };
