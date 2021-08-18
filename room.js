@@ -17,6 +17,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
             .getElementById("room-door")
             .setAttribute("position", { x: -0.007, y: 0.5, z: 1.029 });
         // position = "-0.007 0.500 1.029";
+
+        document
+            .getElementById("mask-counter")
+            .setAttribute("text", "value: 1/1");
+
         e.target.remove();
     };
 
@@ -78,6 +83,8 @@ const initRoom = () => {
 };
 
 const removeRoom = () => {
+    document.getElementById("player-exposure").setAttribute("visible", true);
+    document.getElementById("mask-counter").setAttribute("visible", false);
     rig.setAttribute("rotation", { x: 0, y: 180, z: 0 });
     rig.setAttribute("position", { x: 0, y: 0, z: 0 });
     camera.setAttribute("position", { x: 0, y: 1.7, z: 0 });

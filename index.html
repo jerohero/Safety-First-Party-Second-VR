@@ -64,6 +64,7 @@
                 <img id="face2" src="assets/f_face1.jpg" />
                 <img id="corona" src="assets/corona.png" />
                 <img id="check" src="assets/check.png" />
+                <img id="animated-mask" src="assets/animated-mask.png" />
                 <audio id="music" src="assets/music.mp3" preload="auto"></audio>
                 <audio id="cough" src="assets/cough.wav" preload="auto"></audio>
                 <audio
@@ -130,7 +131,7 @@
                 <a-box
                     id="room-door"
                     aabb-collider="objects: #player-ring"
-                    position="3.766 0 0"
+                    position="-3.069 2.808 -7.247"
                     scale="0.1 1.080 0.5"
                 ></a-box>
             </a-entity>
@@ -362,12 +363,28 @@
                     <a-entity
                         id="player-exposure"
                         text="value: 0/3; align: center; color: green; width: .6;"
-                        position="0 .2 -1"
+                        position="0.03 .2 -1"
+                        visible="false"
                     >
                         <a-image
                             src="#corona"
                             height=".03"
                             width=".03"
+                            position="-.05 0 0"
+                        >
+                        </a-image>
+                    </a-entity>
+
+                    <a-entity
+                        id="mask-counter"
+                        text="value: 0/1; align: center; color: green; width: .6;"
+                        position="0.025 .2 -1"
+                        visible="true"
+                    >
+                        <a-image
+                            src="#animated-mask"
+                            height=".05"
+                            width=".05"
                             position="-.05 0 0"
                         >
                         </a-image>
