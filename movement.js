@@ -1,15 +1,13 @@
 AFRAME.registerComponent("movement", {
     tick: function () {
-        let player = document.getElementById("rig");
-        var direction = new THREE.Vector3();
-        this.el.sceneEl.camera.getWorldDirection(direction);
-        direction.multiplyScalar(0.001);
-        var pos = player.getAttribute("position");
-        pos.add(direction);
-        // this.el.object3D.position.x = pos.x;
-        // this.el.object3D.position.z = pos.z;
-        // this.el.object3D.position.y = -0.1;
-        player.setAttribute("position", { x: pos.x, y: -0.1, z: pos.z });
+        let rig = document.getElementById("rig");
+        let pos = rig.getAttribute("position");
+        let newPos = new THREE.Vector3();
+
+        this.el.sceneEl.camera.getWorldDirection(newPos);
+        newPos.multiplyScalar(0.001);
+        pos.add(newPos);
+        rig.setAttribute("position", { x: pos.x, y: -0.1, z: pos.z });
     },
 });
 
