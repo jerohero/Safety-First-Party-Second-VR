@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>nya >_></title>
+        <title>Safety First, Party Second</title>
         <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
@@ -10,7 +10,7 @@
         <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="main.js"></script>
-        <script src="dev.js"></script>
+        <script src="festival.js"></script>
         <script src="room.js"></script>
         <script src="onhover.js"></script>
         <script src="movement.js"></script>
@@ -42,14 +42,49 @@
                     id="red-arrow"
                     src="assets/red-arrow.glb"
                 ></a-asset-item>
+                <a-asset-item
+                    id="nav-mesh-festival"
+                    src="assets/festival_navmesh.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="festival"
+                    src="assets/festival.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="disinfectant"
+                    src="assets/disinfectant.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="beertent"
+                    src="assets/beertent.gltf"
+                ></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
+                <img id="face1" src="assets/m_face1.jpg" />
+                <img id="face2" src="assets/f_face1.jpg" />
+                <img id="corona" src="assets/corona.png" />
+                <img id="check" src="assets/check.png" />
+                <audio id="music" src="assets/music.mp3" preload="auto"></audio>
+                <audio id="cough" src="assets/cough.wav" preload="auto"></audio>
+                <audio
+                    id="victory"
+                    src="assets/victory.wav"
+                    preload="auto"
+                ></audio>
+                <audio
+                    id="defeat"
+                    src="assets/defeat.wav"
+                    preload="auto"
+                ></audio>
+                <audio id="heal" src="assets/heal.wav" preload="auto"></audio>
             </a-assets>
 
             <!-- Scenes -->
             <a-entity room id="room-scene">
                 <a-sky src="#sky"></a-sky>
+                <a-entity light="type: ambient; color: #CCC"></a-entity>
 
                 <a-entity
+                    id="room-navmesh"
                     gltf-model="#nav-mesh-room"
                     position="-2.874 0 2.078"
                     visible="false"
@@ -82,70 +117,252 @@
                     material="opacity: 0.0; transparent: true"
                     rotation="0 89.000 0"
                 ></a-entity>
+
+                <a-box
+                    id="room-door"
+                    position="0 .5 0"
+                    aabb-collider="objects: #player-ring"
+                ></a-box>
             </a-entity>
 
-            <a-entity dev id="dev-scene">
-                <!-- <a-entity gltf-model="#nav-mesh" nav-mesh></a-entity> -->
+            <a-entity festival id="festival-scene" position="0 1 0">
+                <!-- Environment -->
+                <a-sky src="#sky"></a-sky>
+                <a-entity light="intensity: 3;" position="40 110 22"></a-entity>
+                <a-entity
+                    light="intensity: 2; type: point"
+                    position="-55 120 -235"
+                ></a-entity>
 
-                <a-grid
-                    color="green"
-                    width="30"
-                    height="30"
-                    rotation="-90 0 0"
-                ></a-grid>
-                <a-plane
-                    class="floor"
-                    color="green"
-                    width="30"
-                    height="30"
-                    position="0 0 -30"
-                    rotation="-90 0 0"
-                ></a-plane>
+                <a-entity
+                    gltf-model="#festival"
+                    scale="20 20 20"
+                    position="-15 -1.2 -110"
+                    rotation="0 -60 0"
+                ></a-entity>
 
+                <a-entity
+                    id="festival-navmesh"
+                    gltf-model="#nav-mesh-festival"
+                    visible="false"
+                    position="-15 -2.05 -110"
+                    rotation="0 -90 0"
+                    scale="20 20 20"
+                ></a-entity>
+
+                <!-- Finish -->
+                <a-entity
+                    id="finish-arrow"
+                    scale="50 50 50"
+                    rotation="0 85 180"
+                    position="-109.5 71.5 -127"
+                    gltf-model="#green-arrow"
+                    animation="property: position; to: -109.5 70 -127; loop: true; dur: 1000; easing: easeInOutQuad; dir: alternate"
+                ></a-entity>
+                <a-entity
+                    id="finish"
+                    gltf-model="#beertent"
+                    position="-109 0 -126"
+                    rotation="0 -4.9 0"
+                    scale=".8 .8 .8"
+                    aabb-collider="objects: #player-ring"
+                ></a-entity>
+
+                <!-- Sounds -->
+                <a-entity
+                    id="festival-music"
+                    sound="src: #music; volume: 1; refDistance: 10; loop: true"
+                    position="-86 0 -180"
+                ></a-entity>
+                <a-entity
+                    id="cough-sound"
+                    sound="src: #cough; volume: .4; positional: false"
+                ></a-entity>
+                <a-entity
+                    id="win-sound"
+                    sound="src: #victory; volume: .8; positional: false"
+                ></a-entity>
+                <a-entity
+                    id="fail-sound"
+                    sound="src: #defeat; volume: .5; positional: false"
+                ></a-entity>
+                <a-entity
+                    id="heal-sound"
+                    sound="src: #heal; volume: .5; positional: false"
+                ></a-entity>
+
+                <!-- Checkpoints -->
                 <a-plane
-                    class="wall"
+                    id="checkpoint-area2"
+                    aabb-collider="objects: #player-ring"
                     color="grey"
-                    width="10"
+                    width="100"
                     height="10"
-                    position="0 5 -20"
+                    position="0 0 -55"
                     rotation="0 0 0"
+                    visible="false"
+                ></a-plane>
+                <a-plane
+                    id="checkpoint-area3"
+                    aabb-collider="objects: #player-ring"
+                    color="grey"
+                    width="100"
+                    height="10"
+                    position="1.5 0 -106"
+                    rotation="0 0 0"
+                    visible="false"
+                ></a-plane>
+                <a-plane
+                    id="checkpoint-area4"
+                    aabb-collider="objects: #player-ring"
+                    color="grey"
+                    width="50"
+                    height="10"
+                    position="-52 0 -80.8"
+                    rotation="0 90 0"
+                    visible="false"
+                ></a-plane>
+                <a-plane
+                    id="checkpoint-area5"
+                    aabb-collider="objects: #player-ring"
+                    color="grey"
+                    width="100"
+                    height="10"
+                    position="-98 0 -106"
+                    rotation="0 0 0"
+                    visible="false"
+                ></a-plane>
+                <a-plane
+                    id="checkpoint-area3-5"
+                    aabb-collider="objects: #player-ring"
+                    color="grey"
+                    width="100"
+                    height="10"
+                    position="-48 0 -155"
+                    rotation="0 90 0"
+                    visible="false"
                 ></a-plane>
 
+                <!-- Enemies -->
+                <a-entity id="enemies" position="-45 0 -60"> </a-entity>
+
+                <!-- Templates -->
                 <a-cylinder
-                    class="collisionTest"
-                    aabb-collider="objects: #rig"
+                    class="maleEnemyTemplate"
+                    visible="false"
                     color="pink"
-                    radius=".5"
-                    height="3"
-                    position="0 1.5 -5"
+                    radius=".08"
+                    height="1.5"
+                    position="0 10 -5"
                 >
+                    <a-sphere
+                        src="#face1"
+                        position="0 .9 0"
+                        radius=".3"
+                        rotation="0 -90 0"
+                    ></a-sphere>
                     <a-ring
-                        radius-inner="2"
-                        radius-outer="3"
-                        material="side: double"
+                        radius-inner="0.9"
+                        radius-outer="1.05"
                         rotation="-90 0 0"
-                        position="0 -1 0"
-                        color="red"
-                        height="1"
-                    ></a-ring>
+                        position="0 -.6 0"
+                        color="yellow"
+                    >
+                        <a-ring
+                            radius-inner="0.5"
+                            radius-outer="0.65"
+                            aabb-collider="objects: #player-ring"
+                            color="red"
+                        ></a-ring>
+                    </a-ring>
                 </a-cylinder>
+                <a-cylinder
+                    class="femaleEnemyTemplate"
+                    visible="false"
+                    color="pink"
+                    radius=".08"
+                    height="1.5"
+                    position="0 10 -5"
+                >
+                    <a-sphere
+                        src="#face2"
+                        position="0 .9 0"
+                        radius=".3"
+                        rotation="0 -90 0"
+                    ></a-sphere>
+                    <a-ring
+                        radius-inner="0.9"
+                        radius-outer="1.05"
+                        rotation="-90 0 0"
+                        position="0 -.6 0"
+                        color="yellow"
+                    >
+                        <a-ring
+                            radius-inner="0.5"
+                            radius-outer="0.65"
+                            aabb-collider="objects: #player-ring"
+                            color="red"
+                        ></a-ring>
+                    </a-ring>
+                </a-cylinder>
+
+                <a-entity
+                    class="healTemplate"
+                    position="0 10 0"
+                    visible="false"
+                    gltf-model="#disinfectant"
+                    scale="7 7 7"
+                    aabb-collider="objects: #player-ring"
+                >
+                </a-entity>
             </a-entity>
 
             <!-- Player -->
-            <a-cylinder
+            <a-entity
                 id="rig"
-                movement-controls="controls: autowalk; speed: 0.001; constrainToNavMesh: true"
+                movement-controls="controls: autowalk; speed: 0.1; constrainToNavMesh: true"
                 height="2.5"
                 radius=".15"
                 color="crimson"
             >
-                <!-- <a-entity light="type: point"></a-entity> -->
+                <a-entity light="type: point"></a-entity>
+                <a-ring
+                    id="player-ring"
+                    opacity="0"
+                    radius-inner=".6"
+                    radius-outer=".75"
+                    position="0 .2 0"
+                    rotation="-90 0 0"
+                    color="crimson"
+                >
+                    <a-cylinder
+                        id="hitbox"
+                        visible="false"
+                        height="2"
+                        radius=".75"
+                        rotation="90 0 0"
+                    ></a-cylinder>
+                </a-ring>
                 <a-entity
                     id="camera"
-                    position="0 1.8 0"
+                    position="0 1.4 0"
                     camera
-                    look-controls="pointerLockEnabled: true constrainToNavMesh: true"
+                    look-controls="pointerLockEnabled: true;"
                 >
+                    <a-entity
+                        id="player-exposure"
+                        text="value: 0/3; align: center; color: green; width: .6;"
+                        position="0 .2 -1"
+                    >
+                        <a-image
+                            src="#corona"
+                            height=".03"
+                            width=".03"
+                            position="-.05 0 0"
+                        >
+                        </a-image>
+                    </a-entity>
+
                     <a-cursor
                         id="cursor"
                         fuse="true"
@@ -155,11 +372,96 @@
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"
                         geometry="primitive: sphere; radius: 0.005"
-                        raycaster="objects: [onhovergreen], [onhoverred]"
+                        raycaster="objects: [onhovergreen], [onhoverred], [clickable]"
                     >
                     </a-cursor>
                 </a-entity>
-            </a-cylinder>
+
+                <!-- Screens -->
+                <a-plane
+                    id="fail-screen"
+                    visible="false"
+                    color="white"
+                    width="5"
+                    height="3"
+                    position="0 1.25 2"
+                    rotation="-10 180 0"
+                >
+                    <a-entity
+                        text="value: U heeft zich niet voldoende aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
+                        position="0 .5 .05"
+                    >
+                        <a-entity
+                            text="value: Probeer 1.5 meter afstand te houden van anderen\nom uw kans op besmetting te verlagen.; align: center; color: black; width: 2;"
+                            position="0 -.4 0"
+                        >
+                        </a-entity>
+                        <a-image
+                            src="#corona"
+                            height=".5"
+                            width=".5"
+                            position="0 .5 -.04"
+                        >
+                        </a-image>
+                    </a-entity>
+
+                    <a-plane
+                        id="restart-button"
+                        onhoverbutton
+                        color="red"
+                        width="2"
+                        height=".4"
+                        position="0 -.5 .05"
+                    >
+                        <a-entity
+                            text="value: Opnieuw proberen; align: center; color: white; width: 4;"
+                            position="0 0 0"
+                        ></a-entity>
+                    </a-plane>
+                </a-plane>
+
+                <a-plane
+                    id="win-screen"
+                    visible="false"
+                    color="white"
+                    width="5"
+                    height="3"
+                    position="0 1.25 2"
+                    rotation="-10 180 0"
+                >
+                    <a-entity
+                        text="value: U heeft zich goed aan\nde COVID-19 regels gehouden!; align: center; color: black; width: 4;"
+                        position="0 .5 .05"
+                    >
+                        <a-entity
+                            text="value: U heeft op een verantwoordige manier bier besteld in een evenement. Nu nog in het echt!; align: center; color: black; width: 2;"
+                            position="0 -.4 0"
+                        >
+                        </a-entity>
+                        <a-image
+                            src="#check"
+                            height=".4"
+                            width=".4"
+                            position="0 .5 0"
+                        >
+                        </a-image>
+                    </a-entity>
+
+                    <a-plane
+                        id="restart-button"
+                        onhoverbutton
+                        color="green"
+                        width="2"
+                        height=".4"
+                        position="0 -.5 .05"
+                    >
+                        <a-entity
+                            text="value: Opnieuw spelen; align: center; color: white; width: 4;"
+                            position="0 0 0"
+                        ></a-entity>
+                    </a-plane>
+                </a-plane>
+            </a-entity>
         </a-scene>
     </body>
 </html>
