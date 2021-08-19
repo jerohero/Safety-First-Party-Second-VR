@@ -217,7 +217,7 @@ const endReached = () => {
     document.getElementById('restart-button').addEventListener('click', () => {
         restart()
     })
-    // todo disable movement
+    document.getElementById('rig').setAttribute('movement-controls', 'speed: 0;')
 }
 
 const showFailScreen = () => {
@@ -230,7 +230,7 @@ const showFailScreen = () => {
     document.getElementById('restart-button').addEventListener('click', () => {
         restart()
     })
-    // todo disable movement
+    document.getElementById('rig').setAttribute('movement-controls', 'speed: 0;')
 }
 
 const hideScreens = () => {
@@ -239,4 +239,5 @@ const hideScreens = () => {
     document.getElementById('enemies').setAttribute('visible', 'true')
     document.getElementById('player-exposure').setAttribute('visible', 'true')
     document.getElementById('restart-button').removeAttribute('clickable')
+    document.getElementById('rig').setAttribute('movement-controls', 'speed: .5;')
 }
