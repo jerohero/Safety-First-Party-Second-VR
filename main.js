@@ -13,7 +13,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     document
         .getElementById("room-door")
         .addEventListener("hitstart", doorInteraction);
-    // toFestivalScene()
 });
 
 const doorInteraction = () => {
