@@ -17,7 +17,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
             .getElementById("room-door")
             .setAttribute("position", { x: -0.007, y: 0.5, z: 1.029 });
         // position = "-0.007 0.500 1.029";
-
+        document
+            .getElementById("closed-door")
+            .setAttribute("position", { x: -3.069, y: 2.808, z: -7.247 });
         document
             .getElementById("mask-counter")
             .setAttribute("text", "value: 1/1");
