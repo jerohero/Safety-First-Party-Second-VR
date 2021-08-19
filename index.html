@@ -58,6 +58,7 @@
                     id="beertent"
                     src="assets/beertent.gltf"
                 ></a-asset-item>
+                <a-asset-item id="bench" src="assets/bench.glb"></a-asset-item>
                 <a-asset-item id="mask" src="assets/mask.glb"></a-asset-item>
                 <img id="sky" src="assets/sky_day.jpg" />
                 <img id="face1" src="assets/m_face1.jpg" />
@@ -108,7 +109,7 @@
                     position="-5.765 0.829 2.571"
                     scale="0.3 0.3 0.3"
                     rotation="0 -130 90"
-                    onhovergreen
+                    clickable
                 ></a-entity>
                 <a-entity
                     id="redArrow"
@@ -116,7 +117,7 @@
                     position="-5.765 0.829 2.978"
                     scale="0.3 0.3 0.3"
                     rotation="0 130 90"
-                    onhoverred
+                    clickable
                 ></a-entity>
                 <a-entity
                     id="textPlane"
@@ -126,6 +127,14 @@
                     position="-5.765 0.838 2.775"
                     material="opacity: 0.0; transparent: true"
                     rotation="0 89.000 0"
+                ></a-entity>
+
+                <a-entity
+                    id="bed-bench"
+                    gltf-model="#bench"
+                    position="-0.645 0.042 2.133"
+                    rotation="0 180 0"
+                    scale="1.540 1 1"
                 ></a-entity>
 
                 <a-box
@@ -348,7 +357,7 @@
                 >
                     <a-cylinder
                         id="hitbox"
-                        visible="false"
+                        visible="true"
                         height="2"
                         radius=".75"
                         rotation="90 0 0"
@@ -394,7 +403,8 @@
                         id="cursor"
                         fuse="true"
                         fuse-timeout="1500"
-                        opacity="0.5"
+                        opacity="0.7"
+                        color="purple"
                         animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 140; from: 0.1 0.1 0.1; to: 1 1 1"
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1350; from: 1 1 1; to: 0.1 0.1 0.1"
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 450; to: 1 1 1"

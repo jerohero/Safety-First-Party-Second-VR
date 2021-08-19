@@ -72,8 +72,9 @@ const initRoom = () => {
     let rig = document.getElementById("rig");
     let cursor = document.getElementById("cursor");
     let hitbox = document.getElementById("hitbox");
+    let playerRing = document.getElementById("player-ring");
 
-    hitbox.setAttribute("scale", "0.1 0.1 0.1");
+    playerRing.setAttribute("scale", "0.240 0.290 0.850");
     rig.setAttribute("rotation", { x: 0, y: 90, z: 0 });
     rig.setAttribute("movement-controls", "speed: 0");
     rig.setAttribute("position", { x: -5.35, y: -0.1, z: 2.8 });
@@ -85,6 +86,8 @@ const initRoom = () => {
 const removeRoom = () => {
     document.getElementById("player-exposure").setAttribute("visible", true);
     document.getElementById("mask-counter").setAttribute("visible", false);
+    document.getElementById("player-ring").setAttribute("scale", "1 1 1");
+
     rig.setAttribute("rotation", { x: 0, y: 180, z: 0 });
     rig.setAttribute("position", { x: 0, y: 0, z: 0 });
     camera.setAttribute("position", { x: 0, y: 1.7, z: 0 });
