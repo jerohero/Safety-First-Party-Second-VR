@@ -1,12 +1,11 @@
 window.addEventListener("DOMContentLoaded", (event) => {
     let index = 0;
     const text = [
-        "Welkom bij Safety First, Party Second. Hierin gaan wij jullie speelsgewijs demonstreren hoe je veilig naar een festival kan gaan zonder corona regels te verbreken.\n\n U kunt naar de volgende dia gaan door 2 seconden naar de groene pijl te kijken, en terug door naar de rode pijl te kijken",
-        // "Er zijn verder ook een aantal regels waar je je aan moet houden:\n\n1. Draag een mondkapje\n2. Breng een negatieve corona test of vacinnatiebewijs\n3. Hou anderhalf meter afstand\n4. Maximaal 750 bezoekers mogen aanwezig zijn\n5. Was je handen zo vaak mogelijk\n6. Gebruik desinfecteer middel voordat je naar openbare plekken gaat.",
-        // "Nu hebben wij een applicatie gebouwd waarbij je speelsgewijs een aantal van deze corona regels leert toepassen.\n\n Allereerst leer je hoe het loopmechanisme werkt. Dit is heel simpel, want je loopt namelijk automatisch naar de richting waar je naartoe kijkt. Dit gebeurd ook gelijk na deze tutorial op deze kamer. Hier maak je dus kennis met het lopen en het oppakken van spullen.",
-        // "Wanneer je de movement onder de knie hebt gekregen kan je vervolgens door de deur lopen om te eindigen bij het festival.\n\n Hier leren wij jullie om anderhalf meter afstand te houden van. Je kan maximaal drie keer tegen een persoon aanlopen voordat je opnieuw het level moet doen. Je kan deze teller verminderen door desinfecteer middel op te pakken bij het festival",
-        // "Het doel bij het festival is uiteindelijk jezelf zo veilig mogelijk te verplaatsen naar de biertent.\n\n Wanneer je dit hebt gedaan heb je het level dus gehaald en komt de applicatie ook tot een einde. Je weet dan goed hoe je je moet houden aan de coronaregels tijdens een echte festival.",
-        // "Dit is het einde van de tutorial, om te beginnen kan je over de groene pijl zweven.\n\n Vergeet ook niet om je mondkapje mee te nemen uit je kamer voordat je naar de festival gaat...",
+        "Welkom bij Safety First, Party Second. Hierin word je op een entertainende wijze gedemonstreerd hoe je veilig volgens de COVID-19 maatregelen festivals kunt bezoeken.\n\nJe kunt naar de volgende dia gaan door 2 seconden naar de groene pijl links te staren, en terug te gaan door naar de rode pijl rechts te staren.",
+        "De volgende COVID-19 maatregelen gelden bij festivals:\n\n1. Draag een mondkapje\n2. Breng een negatieve COVID-19-testuitslag of vaccinatiebewijs\n3. Houd anderhalve meter afstand van anderen\n4. Reinig uw handen zo vaak mogelijk\n5. Gebruik desinfectiemiddel voordat u naar openbare plekken gaat.",
+        "Je gaat zometeen naar een festival toe, en het is jouw doel om daar bier te bestellen.\n\nJe kunt straks navigeren door simpelweg de richting op te kijken waar je naartoe wilt. Het is dan de bedoeling dat je anderhalve meter afstand houdt van andere festivalgangers.",
+        "Wanneer je te dicht bij andere personen komt, zal je blootstelling omhoog gaan.\n\nHet spel is voorbij wanneer je blootstelling de 3 bereikt, dus let goed op!\n\nVerlaag je blootstelling door desinfectiemiddelen op te pakken die over de locatie zijn verspreid.",
+        "Laat het feest niet langer wachten, op naar de deur! Vergeet je je mondkapje niet?"
     ];
 
     const textPlane = document.getElementById("textPlane");
@@ -16,7 +15,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         document
             .getElementById("room-door")
             .setAttribute("position", { x: -0.007, y: 0.5, z: 1.029 });
-        // position = "-0.007 0.500 1.029";
         document
             .getElementById("closed-door")
             .setAttribute("position", { x: -3.069, y: 2.808, z: -7.247 });
@@ -91,6 +89,7 @@ const removeRoom = () => {
     document.getElementById("player-ring").setAttribute("scale", "1 1 1");
     document.getElementById("hitbox").setAttribute("opacity", "0");
 
+    rig.setAttribute("movement-controls", "speed: 0.1");
     rig.setAttribute("rotation", { x: 0, y: -360, z: 0 });
     rig.setAttribute("position", { x: 0, y: 0, z: 0 });
     camera.setAttribute("position", { x: 0, y: 1.7, z: 0 });
