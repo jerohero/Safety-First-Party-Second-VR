@@ -87,7 +87,7 @@
                 <a-entity
                     id="room-navmesh"
                     gltf-model="#nav-mesh-room"
-                    position="-2.874 0 2.078"
+                    position="-2.874 -.5 2.078"
                     visible="false"
                     nav-mesh
                 ></a-entity>
@@ -345,7 +345,6 @@
             <a-entity
                 id="rig"
                 movement-controls="controls: autowalk; speed: 0.1; constrainToNavMesh: true"
-                height="2.5"
                 radius=".15"
                 color="crimson"
             >
@@ -361,15 +360,15 @@
                 >
                     <a-cylinder
                         id="hitbox"
-                        visible="false"
-                        height="2"
+                        opacity="0"
+                        height="5"
                         radius=".75"
                         rotation="90 0 0"
                     ></a-cylinder>
                 </a-ring>
                 <a-entity
                     id="camera"
-                    position="0 1.4 0"
+                    position="0 0 0"
                     camera
                     look-controls="pointerLockEnabled: true;"
                 >

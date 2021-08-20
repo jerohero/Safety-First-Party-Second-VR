@@ -239,5 +239,5 @@ const hideScreens = () => {
     document.getElementById('enemies').setAttribute('visible', 'true')
     document.getElementById('player-exposure').setAttribute('visible', 'true')
     document.getElementById('restart-button').removeAttribute('clickable')
-    document.getElementById('rig').setAttribute('movement-controls', 'speed: .1;')
+    document.getElementById('rig').setAttribute('movement-controls', 'speed: .12;')
 }
